@@ -13,6 +13,10 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * App Version 0.1
 * Jquery mobile - http://demos.jquerymobile.com/1.4.5/
 * IndexDb https://rolandocaldas.com/html5/indexeddb-tu-base-de-datos-local-en-html5
+* MYSQL
+* PHP5
+* Codeigniter 3
+* Auth library https://www.formget.com/form-login-codeigniter/
 
 
 ### Start Up / Configuracion ###

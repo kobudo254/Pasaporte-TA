@@ -1,13 +1,14 @@
 <body>
  <div data-role="page">
 
-<? if(isset($txt['header'])): ?>
+<? 
+	if(isset($_SESSION['error_msg'])):
 
-	<div data-role="header">
-	    <h1><?=$txt['header']?></h1>
-	</div><!-- /header -->
+?>
+	<div data-role="popup" id="popupBasic" data-transition="slidedown"><?=$_SESSION['error_msg']?></div>
 
 <? endif; ?>
+
 
 <? $this->load->view($page);  ?>
 </div><!-- /page -->
