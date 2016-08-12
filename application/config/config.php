@@ -19,6 +19,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://localhost/passport/';
 
+
+/*
+|--------------------------------------------------------------------------
+| Frontend Framwork
+|--------------------------------------------------------------------------
+|
+| Used to define wich css frontend framework will be used: 'foundation' 'jqm'
+|
+*/
+$config['css_fw'] = 'foundation';
+
+
 /*
 |--------------------------------------------------------------------------
 | Index File

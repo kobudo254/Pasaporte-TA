@@ -1,13 +1,12 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 Class Auth extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
 
 		$this->load->library('form_validation');
-
-		$this->output->enable_profiler(TRUE);
-
 	}
 
 	// Show login page
@@ -25,47 +24,32 @@ Class Auth extends CI_Controller {
 
 	// Validate and store registration data in database
 	public function new_user_registration() {
+		
+		$data = array(
+			'user_name' => null,
+			'user_email' => $this->session->userdata('correo'),
+			'user_password' => null
+			);
+		$result = $this->user_model->registration_insert($data);
 
-	// Check validation for user input in SignUp form
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
-
-
-		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('registration_form');
+		if ($result == TRUE) {
+			$this->session->set_flashdata('msg', '<p class="msg_ok text-center">Usuario TA creado correctamente. Bienvenido a su nuevo pasaporte.</p>');
+			redirect('passport/init');
 		} else {
-			$data = array(
-				'user_name' => $this->input->post('username'),
-				'user_email' => $this->input->post('email_value'),
-				'user_password' => $this->input->post('password')
-				);
-			$result = $this->user_model->registration_insert($data);
-			if ($result == TRUE) {
-				$data['message_display'] = 'Registration Successfully !';
-				$this->load->view('login_form', $data);
-			} else {
-				$data['message_display'] = 'Username already exist!';
-				$this->load->view('registration_form', $data);
-			}
+			$this->session->set_flashdata('message_error', 'Error al darte de alta como usuario nuevo.');
+			$this->load->view('auth/login', $data);
 		}
+
 	}
 
 	// Check for user login process
 	public function login() {
 
-		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-		$this->form_validation->set_rules('correo', 'dirección de correo', 'trim|required',
-		array(
-		'required'      => 'Debes introducir una %s.',
-		'trim'     => 'El email %s está en blanco.'
-		));
-        		
 
+		if ($this->input->post('correo') == null) {	
 
-		if ($this->form_validation->run() == FALSE) {					
 				$data['page'] = 'auth/login';
+
 		} else {
 			$data = array(
 				'username' => $this->input->post('correo'),
@@ -82,12 +66,13 @@ Class Auth extends CI_Controller {
 						'email' => $result[0]->user_email,
 						);
 					// Add user data in session
-					$this->session->set_flashdata('message_error', 'Usuario TA correcto, bienvenido a su pasaporte.');
-					$data['page'] = 'auth/dashboard';
+					$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
+					redirect('auth/dashboard');
 				}
 			} else {
-				$this->session->set_flashdata('message_error', 'Email no válido, compruébelo');				
-				$data['page'] = 'auth/login';
+				//Guardamos el correo para darle el alta
+				$this->session->set_userdata('correo',$this->input->post('correo'));
+				redirect('auth/new_user_registration');
 
 			}
 		} //Validation
@@ -107,5 +92,8 @@ Class Auth extends CI_Controller {
 		$data['message_display'] = 'Successfully Logout';
 		$this->load->view('login_form', $data);
 	}
+
+
+
 
 }

@@ -3,3 +3,7 @@
 div.error{
 	color: red;
 }
+
+p.msg_ok{
+	color: green;
+}

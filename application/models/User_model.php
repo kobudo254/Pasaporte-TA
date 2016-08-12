@@ -84,6 +84,17 @@ class User_model extends CI_Model {
       return 0;
    }
    
+
+   function get_user_correo(){
+   		if($this->session->userdata('correo')!=null):
+   				return $this->session->userdata('correo');
+   		else:
+   				return false;
+
+   		endif;
+   }
+   
+
    function inserta_usuario($datos = array()){
       if(!$this->_required(array("email_usuario","clave"), $datos)){
          return FALSE;
