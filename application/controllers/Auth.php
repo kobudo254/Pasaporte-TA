@@ -4,6 +4,8 @@ Class Auth extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
+		$this->load->library('form_validation');
+
 		$this->output->enable_profiler(TRUE);
 
 	}
@@ -28,6 +30,8 @@ Class Auth extends CI_Controller {
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('email_value', 'Email', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean');
+
+
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('registration_form');
 		} else {
@@ -36,7 +40,7 @@ Class Auth extends CI_Controller {
 				'user_email' => $this->input->post('email_value'),
 				'user_password' => $this->input->post('password')
 				);
-			$result = $this->login_database->registration_insert($data);
+			$result = $this->user_model->registration_insert($data);
 			if ($result == TRUE) {
 				$data['message_display'] = 'Registration Successfully !';
 				$this->load->view('login_form', $data);
@@ -51,39 +55,42 @@ Class Auth extends CI_Controller {
 	public function login() {
 
 		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+		$this->form_validation->set_rules('correo', 'dirección de correo', 'trim|required',
+		array(
+		'required'      => 'Debes introducir una %s.',
+		'trim'     => 'El email %s está en blanco.'
+		));
+        		
 
-		if ($this->form_validation->run() == FALSE) {
 
-				$this->session->set_userdata('error_msg', 'Email no válido, compruébelo');
+		if ($this->form_validation->run() == FALSE) {					
 				$data['page'] = 'auth/login';
-
 		} else {
 			$data = array(
-				'username' => $this->input->post('email'),
+				'username' => $this->input->post('correo'),
 				'password' => null
 				);
-			$result = $this->login_database->login($data);
+			$result = $this->user_model->login($data);
 			if ($result == TRUE) {
 
-				$username = $this->input->post('email');
-				$result = $this->login_database->read_user_information($username);
+				$username = $this->input->post('correo');
+				$result = $this->user_model->read_user_information($username);
 				if ($result != false) {
 					$session_data = array(
 						'username' => $result[0]->user_name,
 						'email' => $result[0]->user_email,
 						);
 					// Add user data in session
-					$this->session->set_userdata('logged_in', $session_data);
-					$this->session->set_flashdata('message', 'Usuario TA correcto, bienvenido a su pasaporte.');
+					$this->session->set_flashdata('message_error', 'Usuario TA correcto, bienvenido a su pasaporte.');
 					$data['page'] = 'auth/dashboard';
 				}
 			} else {
-				$this->session->set_flashdata('message', 'Email no válido, compruébelo');				
+				$this->session->set_flashdata('message_error', 'Email no válido, compruébelo');				
 				$data['page'] = 'auth/login';
 
 			}
-		}
+		} //Validation
 
 		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
 		$this->load->view('web/wrap',$data);		

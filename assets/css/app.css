@@ -1,1 +1,5 @@
 /* Application BEK standard CSS */
+
+div.error{
+	color: red;
+}
