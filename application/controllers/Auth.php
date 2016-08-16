@@ -7,6 +7,8 @@ Class Auth extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library('form_validation');
+
+		$this->output->enable_profiler(TRUE);		
 	}
 
 	// Show login page
@@ -18,10 +20,23 @@ Class Auth extends CI_Controller {
 	}
 
 
-	// Show user dashboard
+	// User dashboard
 	public function dashboard(){
 
-		
+		//Get user info: id, email....
+		$data['user_data'] = $this->user_model->read_user_information($this->session->userdata('correo'));
+		$this->session->set_userdata('user_id',$data['user_data'][0]->id);
+
+		//Count visits
+		$data['total'] = 0;
+		$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
+
+
+		//Vista principal
+		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
+		$data['page'] = 'auth/dashboard';
+		$this->load->view('web/wrap',$data);		
+
 	}
 
 
@@ -38,11 +53,13 @@ Class Auth extends CI_Controller {
 			'user_email' => $this->session->userdata('correo'),
 			'user_password' => null
 			);
+
 		$result = $this->user_model->registration_insert($data);
 
 		if ($result == TRUE) {
 			$this->session->set_flashdata('msg', '<p class="msg_ok text-center">Usuario TA creado correctamente. Bienvenido a su nuevo pasaporte.</p>');
-			redirect('passport/init/'.$this->db->insert_id());
+			$this->session->set_userdata('user_id',$this->db->insert_id());
+			redirect('passport/init/'.$this->input->userdata('user_id'));
 		} else {
 			$this->session->set_flashdata('message_error', 'Error al darte de alta como usuario nuevo.');
 			$this->load->view('auth/login', $data);
@@ -64,6 +81,7 @@ Class Auth extends CI_Controller {
 				'password' => null
 				);
 			$result = $this->user_model->login($data);
+			$this->session->set_userdata('correo',$this->input->post('correo'));			
 			if ($result == TRUE) {
 
 				$username = $this->input->post('correo');
@@ -79,7 +97,6 @@ Class Auth extends CI_Controller {
 				}
 			} else {
 				//Guardamos el correo para darle el alta
-				$this->session->set_userdata('correo',$this->input->post('correo'));
 				redirect('auth/new_user_registration');
 
 			}
