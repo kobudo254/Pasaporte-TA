@@ -54,3 +54,8 @@ ul.no-bullet.smaller li{
     float:right;
 }
 
+
+div.spaceball{
+    height: 20px;
+    width: 100%;
+}

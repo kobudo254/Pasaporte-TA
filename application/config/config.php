@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/passport/';
+//$config['base_url'] = 'http://90.0.0.17/passport/';
 
 
 /*
