@@ -106,11 +106,11 @@ class User_model extends CI_Model {
       $datos['clave']=md5($datos['clave']);
    
       $this->db->insert('usuario', $datos);
-      return $this->db->insert_id();
+      return TRUE;
    }
 
 
-   function reset_pasaporte(){
+   function reset_pasaporte($date = null){
 
 		$datos = array(
 			'user_email' => $this->session->userdata('correo'),
@@ -119,17 +119,35 @@ class User_model extends CI_Model {
 			'ta_aguila' => 0,
 			'ta_poniente' => 0,
 			'ta_aviles' =>0,
-			'fecha_fin' => date('Y-m-d')
+			'fecha_fin' => $date
 			);
 
 		$this->db->set($datos);
 		$this->db->where('user_email',$datos['user_email']);
 		
-		if($this->db->update('user_login', $datos)){		
-        	return TRUE;
+		if($this->db->update('user_login', $datos)){	
+		    return TRUE;
         }else{
         	return FALSE;
         }
+   }
+
+
+   function reset_logros($id){
+
+		$data = array(
+		'user_id' => $id,
+		'3v' => FALSE,
+		'6v' => FALSE,
+		'10v' => FALSE,
+		'10v_deluxe' => FALSE
+		);
+
+		$this->db->where('user_id',$id);
+		$this->db->replace('premios', $data);
+
+		return true;
+
    }
 
 

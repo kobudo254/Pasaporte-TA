@@ -11,12 +11,16 @@ class Passport extends CI_Controller {
 	}
 
 	//Inicia un nuevo pasaporte y crea todo lo necesario mientras se muestra un inicializador
-	public function init(){
+	public function init($user_id){
 
-		//Creamos la ficha de los 5 centros a 0 visitas
-		$result = $this->user_model->reset_pasaporte();
+
+		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
+		$final = date("Y-m-d", strtotime("+".FECHA_VALIDED." month"));
+		$this->user_model->reset_pasaporte($final);
 
 		//Asociamos premios logros
+		$this->user_model->reset_logros($user_id);
+
 
 		//Loading view
 		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';

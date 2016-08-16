@@ -18,6 +18,9 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Codeigniter 3
 * Auth library https://www.formget.com/form-login-codeigniter/
 
+## Database ##
+* Tabla usuarios => Contiene datos de login, cuentas de visitas de cada centro, fecha caducidad de su pasaporte (AISLAR TABLA EN FUTURO).
+* Tabla premios => Logros booleanos a true/false. PREMIOS: 3 visitas, 6 visitas, 10 visitas, 10 deluxe (Las 5 sidrerias entre las 10 visitas).
 
 ### Start Up / Configuracion ###
 * Summary of set up
@@ -28,9 +31,13 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Deployment instructions
 
 ### Start Up / Configuracion ###
+* Set enviroment in config file.
+* Set css framework in config file: Foundation6 / JqueryMobile
+* Set CONSTANTS: claves centros y valided en número meses.
 
 ### To Do ###
 * Tests
 * Revisión de código
 * Aislamiento y refactoring
 * Performance
+* Cache SQL + PHP

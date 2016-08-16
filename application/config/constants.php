@@ -12,6 +12,7 @@ define('CLAVE_GASCONA', 'gascona');
 define('CLAVE_PARRILLA', 'parrilla');
 define('CLAVE_PONIENTE', 'poniente');
 define('CLAVE_AVILES', 'aviles');
+define('FECHA_VALIDED', '10'); //en meses
 
 
 /*

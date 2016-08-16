@@ -17,6 +17,14 @@ Class Auth extends CI_Controller {
 		$this->load->view('web/wrap',$data);
 	}
 
+
+	// Show user dashboard
+	public function dashboard(){
+
+		
+	}
+
+
 	// Show registration page
 	public function user_registration_show() {
 		$this->load->view('registration_form');
@@ -34,7 +42,7 @@ Class Auth extends CI_Controller {
 
 		if ($result == TRUE) {
 			$this->session->set_flashdata('msg', '<p class="msg_ok text-center">Usuario TA creado correctamente. Bienvenido a su nuevo pasaporte.</p>');
-			redirect('passport/init');
+			redirect('passport/init/'.$this->db->insert_id());
 		} else {
 			$this->session->set_flashdata('message_error', 'Error al darte de alta como usuario nuevo.');
 			$this->load->view('auth/login', $data);
