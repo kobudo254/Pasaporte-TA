@@ -13,29 +13,43 @@ Class Auth extends CI_Controller {
 
 	// Show login page
 	public function index() {
-		//Vista principal
-		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
-		$data['page'] = 'auth/login';
-		$this->load->view('web/wrap',$data);
+
+ 		if (!$this->user_model->check_login()){
+
+			//Vista principal
+			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
+			$data['page'] = 'auth/login';
+			$this->load->view('web/wrap',$data);
+
+ 		}else{ 			
+ 			redirect('auth/dashboard');
+ 		}
+
 	}
 
 
 	// User dashboard
 	public function dashboard(){
 
-		//Get user info: id, email....
-		$data['user_data'] = $this->user_model->read_user_information($this->session->userdata('correo'));
-		$this->session->set_userdata('user_id',$data['user_data'][0]->id);
+		if ($this->user_model->check_login()){
+			
+			//Get user info: id, email....
+			$data['user_data'] = $this->user_model->read_user_information($this->session->userdata('correo'));
+			$this->session->set_userdata('user_id',$data['user_data'][0]->id);
 
-		//Count visits
-		$data['total'] = 0;
-		$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
+			//Count visits
+			$data['total'] = 0;
+			$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
 
 
-		//Vista principal
-		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
-		$data['page'] = 'auth/dashboard';
-		$this->load->view('web/wrap',$data);		
+			//Vista principal
+			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
+			$data['page'] = 'auth/dashboard';
+			$this->load->view('web/wrap',$data);	
+		}else{
+			$this->session->set_flashdata('message_error', 'Debe loguearse para acceder a su perfil');
+			redirect('auth/login');
+		}	
 
 	}
 

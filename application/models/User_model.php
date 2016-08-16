@@ -7,6 +7,11 @@ class User_model extends CI_Model {
 	}
 
 
+	//If is logged ...
+	public function check_login(){
+		return (bool) $this->session->userdata('correo');
+	}
+
 	// Insert registration data in database
 	public function registration_insert($data) {
 		// Query to check whether username already exist or not
