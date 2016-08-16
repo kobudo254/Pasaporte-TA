@@ -72,7 +72,7 @@ class User_model extends CI_Model {
 
 
     
-	function existe_email($email){
+	public function existe_email($email){
 	    $this->db->select('email_usuario');
 	    $this->db->where('email_usuario', $email); 
 	    $query = $this->db->get('usuario');
@@ -82,7 +82,7 @@ class User_model extends CI_Model {
 	    return 0;
    }
    
-   function usuario_login($email){
+   public function usuario_login($email){
       $this->db->where('email_usuario', $email); 
       //$this->db->where('clave', md5($clave)); 
       $query = $this->db->get('usuario');
@@ -93,7 +93,7 @@ class User_model extends CI_Model {
    }
    
 
-   function get_user_correo(){
+   public function get_user_correo(){
    		if($this->session->userdata('correo')!=null):
    				return $this->session->userdata('correo');
    		else:
@@ -103,7 +103,7 @@ class User_model extends CI_Model {
    }
    
 
-   function inserta_usuario($datos = array()){
+   public function inserta_usuario($datos = array()){
       if(!$this->_required(array("email_usuario","clave"), $datos)){
          return FALSE;
       }
@@ -115,45 +115,6 @@ class User_model extends CI_Model {
    }
 
 
-   function reset_pasaporte($date = null){
-
-		$datos = array(
-			'user_email' => $this->session->userdata('correo'),
-			'ta_parrilla' => 0,
-			'ta_gascona' => 0,
-			'ta_aguila' => 0,
-			'ta_poniente' => 0,
-			'ta_aviles' =>0,
-			'fecha_fin' => $date
-			);
-
-		$this->db->set($datos);
-		$this->db->where('user_email',$datos['user_email']);
-		
-		if($this->db->update('user_login', $datos)){	
-		    return TRUE;
-        }else{
-        	return FALSE;
-        }
-   }
-
-
-   function reset_logros($id){
-
-		$data = array(
-		'user_id' => $id,
-		'3v' => FALSE,
-		'6v' => FALSE,
-		'10v' => FALSE,
-		'10v_deluxe' => FALSE
-		);
-
-		$this->db->where('user_id',$id);
-		$this->db->replace('premios', $data);
-
-		return true;
-
-   }
 
 
 }

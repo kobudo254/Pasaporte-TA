@@ -8,7 +8,7 @@ Class Auth extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->output->enable_profiler(TRUE);		
+		//$this->output->enable_profiler(TRUE);		
 	}
 
 	// Show login page

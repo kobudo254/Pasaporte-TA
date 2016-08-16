@@ -7,7 +7,7 @@ class Passport extends CI_Controller {
 
 		parent::__construct();
 
-		$this->output->enable_profiler(TRUE);
+		//$this->output->enable_profiler(TRUE);
 	}
 
 	//Inicia un nuevo pasaporte y crea todo lo necesario mientras se muestra un inicializador
@@ -16,10 +16,10 @@ class Passport extends CI_Controller {
 
 		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
 		$final = date("Y-m-d", strtotime("+".FECHA_VALIDED." month"));
-		$this->user_model->reset_pasaporte($final);
+		$this->sidrerias->reset_pasaporte($final);
 
 		//Asociamos premios logros
-		$this->user_model->reset_logros($user_id);
+		$this->sidrerias->reset_logros($user_id);
 
 
 		//Loading view
@@ -28,6 +28,18 @@ class Passport extends CI_Controller {
 		$this->load->view('web/wrap',$data);
 
 	}
+
+
+	//Añadir sello y comprueba condiciones para premio
+	public function sello($chigre,$user){
+
+		$sidreria = "ta_".$chigre; // "ta_chigre1, ta_chigre2" para conocer el nombre del campo a actualizar
+		
+		$this->sidrerias->visitar($sidreria,$user);
+
+		redirect('auth/dashboard');
+
+	}	
 
 
 }
