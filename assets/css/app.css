@@ -1,0 +1,56 @@
+/* Application BEK standard CSS */
+
+div.error{
+	color: red;
+}
+
+p.msg_ok{
+	color: green;
+}
+
+.head{
+    margin-top: 25px;
+}
+
+/* Dashboard */ 
+.my_dashboard{
+    margin-top: 25px;
+}
+
+
+#progressBar {
+    width: 100%;
+    height: 22px;
+    border: 1px solid #111;
+    background-color: #292929;
+}
+    #progressBar div {
+        height: 100%;
+        color: #fff;
+        text-align: right;
+        line-height: 22px; /* same as #progressBar height if we want text middle aligned */
+        width: 0;
+        background-color: #0099ff;
+    }
+
+ul.spacer li{
+    margin-top: 10px;
+}
+
+ul.no-bullet.smaller li{
+    font-size: 0.85em;
+}
+
+#logout{
+    float:right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
+#logout img{
+    max-width: 40px;
+    float:right;
+}
+
