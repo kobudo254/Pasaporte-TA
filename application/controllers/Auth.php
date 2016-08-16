@@ -26,7 +26,7 @@ Class Auth extends CI_Controller {
 	public function new_user_registration() {
 		
 		$data = array(
-			'user_name' => null,
+			'user_name' => $this->session->userdata('correo'),
 			'user_email' => $this->session->userdata('correo'),
 			'user_password' => null
 			);

@@ -3,6 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+| CONTRASEÑAS TA
+|--------------------------------------------------------------------------
+|
+*/
+define('CLAVE_AGUILA', 'aguila');
+define('CLAVE_GASCONA', 'gascona');
+define('CLAVE_PARRILLA', 'parrilla');
+define('CLAVE_PONIENTE', 'poniente');
+define('CLAVE_AVILES', 'aviles');
+
+
+/*
+|--------------------------------------------------------------------------
 | File and Directory Modes
 |--------------------------------------------------------------------------
 |

@@ -31,7 +31,10 @@ class User_model extends CI_Model {
 	// Read data using username and password
 	public function login($data) {
 
-		$condition = "user_name =" . "'" . $data['username'] . "' AND " . "user_password =" . "'" . $data['password'] . "'";
+		$condition = "user_name =" . "'" . $data['username']."'";
+		if($data['password']!=null){ 
+			$condition .=" AND " . "user_password =" . "'" . $data['password'] . "'";
+		}
 		$this->db->select('*');
 		$this->db->from('user_login');
 		$this->db->where($condition);
@@ -105,5 +108,29 @@ class User_model extends CI_Model {
       $this->db->insert('usuario', $datos);
       return $this->db->insert_id();
    }
+
+
+   function reset_pasaporte(){
+
+		$datos = array(
+			'user_email' => $this->session->userdata('correo'),
+			'ta_parrilla' => 0,
+			'ta_gascona' => 0,
+			'ta_aguila' => 0,
+			'ta_poniente' => 0,
+			'ta_aviles' =>0,
+			'fecha_fin' => date('Y-m-d')
+			);
+
+		$this->db->set($datos);
+		$this->db->where('user_email',$datos['user_email']);
+		
+		if($this->db->update('user_login', $datos)){		
+        	return TRUE;
+        }else{
+        	return FALSE;
+        }
+   }
+
 
 }
