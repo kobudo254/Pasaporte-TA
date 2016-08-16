@@ -19,7 +19,7 @@
 		</div>	
 
 		<div class="large-5 small-12 columns">
-			<br>
+			<br class="show-for-small-only">
 			<ul class="no-bullet smaller">
 				<li>TA Parrilla: <?=$user_data[0]->ta_parrilla;?> visitas</li>
 				<li>TA Gascona: <?=$user_data[0]->ta_gascona;?> visitas</li>
@@ -28,7 +28,7 @@
 				<li>TA Aguila: <?=$user_data[0]->ta_aguila;?> visitas</li>
 			</ul>
 
-			<h6><strong>Visitas a Tierra Astur:</strong> <?=$total;?></h6>
+			<h6><strong>Visitas Tierra Astur:</strong> <?=$total;?></h6>
 
 		<div class="close" id="logout">
 				<a href="<?=base_url()?>auth/logout"><img src="<?=base_url()?>assets/images/exit.png" alt="Logout" /></a>			
