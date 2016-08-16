@@ -73,7 +73,7 @@ Class Auth extends CI_Controller {
 		if ($result == TRUE) {
 			$this->session->set_flashdata('msg', '<p class="msg_ok text-center">Usuario TA creado correctamente. Bienvenido a su nuevo pasaporte.</p>');
 			$this->session->set_userdata('user_id',$this->db->insert_id());
-			redirect('passport/init/'.$this->input->userdata('user_id'));
+			redirect('passport/init/'.$this->session->userdata('user_id'));
 		} else {
 			$this->session->set_flashdata('message_error', 'Error al darte de alta como usuario nuevo.');
 			$this->load->view('auth/login', $data);
@@ -123,13 +123,11 @@ Class Auth extends CI_Controller {
 	// Logout from admin page
 	public function logout() {
 
-	// Removing session data
-		$sess_array = array(
-			'username' => ''
-			);
-		$this->session->unset_userdata('logged_in', $sess_array);
-		$data['message_display'] = 'Successfully Logout';
-		$this->load->view('login_form', $data);
+		// Removing session data
+		$this->session->sess_destroy();
+
+		$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
+		redirect('auth/index');
 	}
 
 
