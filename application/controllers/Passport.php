@@ -34,8 +34,8 @@ class Passport extends CI_Controller {
 	// This function call from AJAX
 	public function sello($chigre,$user){
 
-		$sidreria = "ta_".$chigre; // "ta_chigre1, ta_chigre2" para conocer el nombre del campo a actualizar
-		
+		$sidreria = "ta_".$chigre; // "ta_chigre1, ta_chigre2" para conocer el nombre del campo a actualizar		
+
 		$this->sidrerias->visitar($sidreria,$user);
 
 		//Get user info: id, email....
@@ -47,8 +47,7 @@ class Passport extends CI_Controller {
 
 
 		//Either you can print value or you can send value to database
-		 echo json_encode($data);
-	}
+		echo json_encode($data);
 
 
 }

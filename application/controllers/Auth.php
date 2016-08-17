@@ -8,7 +8,7 @@ Class Auth extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		//$this->output->enable_profiler(TRUE);		
+		$this->output->enable_profiler(TRUE);		
 	}
 
 	// Show login page
@@ -123,6 +123,34 @@ Class Auth extends CI_Controller {
 		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
 		$this->load->view('web/wrap',$data);		
 	}
+
+
+	public function pass_check($chigre,$clave = null){
+
+		switch($chigre){
+			case "gascona": $super_clave = GASCONA;
+							break;
+			case "parrilla": $super_clave = PARRILLA;
+								break;
+			case "aviles": $super_clave = AVILES;
+								break;
+			case "aguila": $super_clave = AGUILA;
+								break;
+			case "poniente": $super_clave = PONIENTE;
+							break;
+			default: return false;
+					break;
+		}
+
+		if($super_clave === $clave):
+			echo "mola";			
+			return true;
+		else:
+			echo "joder";
+			return false;
+		endif;
+	}
+
 
 	// Logout from admin page
 	public function logout() {

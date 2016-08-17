@@ -33,9 +33,8 @@ $( document ).ready(function() {
 	    });
 	});
 
-});
 
-
+//Callbacks
 function progress(percent, $element) {
 
     var progressBarWidth = percent * $element.width() / 100;
@@ -43,5 +42,10 @@ function progress(percent, $element) {
     	$("#continuar").removeClass("hide");   
   });
 }
+
+});
+
+
+
 
 
