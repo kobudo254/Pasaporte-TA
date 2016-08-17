@@ -8,7 +8,7 @@ Class Auth extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->output->enable_profiler(TRUE);		
+		//$this->output->enable_profiler(TRUE);		
 	}
 
 	// Show login page
@@ -125,7 +125,9 @@ Class Auth extends CI_Controller {
 	}
 
 
-	public function pass_check($chigre,$clave = null){
+	public function pass_check($chigre){
+
+		$clave = $this->input->post('clave_chigre');
 
 		switch($chigre){
 			case "gascona": $super_clave = GASCONA;
@@ -142,12 +144,12 @@ Class Auth extends CI_Controller {
 					break;
 		}
 
-		if($super_clave === $clave):
-			echo "mola";			
-			return true;
+		$data['ok'] = true;
+
+		if($super_clave == $clave):
+			echo "true";
 		else:
-			echo "joder";
-			return false;
+			echo "false";
 		endif;
 	}
 

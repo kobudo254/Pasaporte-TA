@@ -15,7 +15,7 @@ class Passport extends CI_Controller {
 
 
 		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
-		$final = date("Y-m-d", strtotime("+".FECHA_VALIDED." month"));
+		$final = date("Y-m-d", strtotime("+".VALIDED." month"));
 		$this->sidrerias->reset_pasaporte($final);
 
 		//Asociamos premios logros
@@ -48,6 +48,6 @@ class Passport extends CI_Controller {
 
 		//Either you can print value or you can send value to database
 		echo json_encode($data);
-
+	}
 
 }

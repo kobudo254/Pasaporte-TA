@@ -53,11 +53,11 @@
 	<div class="row">
 	<div class="large-12  small-6 columns small-centered text-center">
 		<ul class="no-bullet text-center">
-			<li><a data-url="<?=base_url()?>passport/sello/gascona/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar gascona</a></li>
-			<li><a data-url="<?=base_url()?>passport/sello/parrilla/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar parrilla</a></li>
-			<li><a data-url="<?=base_url()?>passport/sello/aguila/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar aguila</a></li>
-			<li><a data-url="<?=base_url()?>passport/sello/aviles/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar aviles</a></li>
-			<li><a data-url="<?=base_url()?>passport/sello/poniente/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar poniente</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/gascona/<?=$user_data[0]->id;?>" data-chigre="gascona" class="button expanded sumachigre">sellar gascona</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/parrilla/<?=$user_data[0]->id;?>" data-chigre="parrilla" class="button expanded sumachigre">sellar parrilla</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/aguila/<?=$user_data[0]->id;?>" data-chigre="aguila" class="button expanded sumachigre">sellar aguila</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/aviles/<?=$user_data[0]->id;?>" data-chigre="aviles" class="button expanded sumachigre">sellar aviles</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/poniente/<?=$user_data[0]->id;?>" data-chigre="poniente" class="button expanded sumachigre">sellar poniente</a></li>
 		</ul>
 
 	</div>
