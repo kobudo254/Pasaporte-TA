@@ -16,6 +16,10 @@ Class Auth extends CI_Controller {
 
  		if (!$this->user_model->check_login()){
 
+ 			if($this->uri->segment(3)=="bye"):
+					$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
+			endif;
+
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
 			$data['page'] = 'auth/login';
@@ -127,7 +131,7 @@ Class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
-		redirect('auth/index');
+		redirect('auth/index/bye');
 	}
 
 

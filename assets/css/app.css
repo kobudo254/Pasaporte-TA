@@ -5,7 +5,11 @@ div.error{
 }
 
 p.msg_ok{
-	color: green;
+    color: green;
+}
+
+p.ok{
+    color: green;
 }
 
 .head{
@@ -56,6 +60,6 @@ ul.no-bullet.smaller li{
 
 
 div.spaceball{
-    height: 20px;
+    min-height: 20px;
     width: 100%;
 }

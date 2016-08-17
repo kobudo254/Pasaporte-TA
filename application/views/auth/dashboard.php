@@ -24,14 +24,14 @@
 				<div class="large-5 small-12 columns">
 					<br class="show-for-small-only">
 					<ul class="no-bullet smaller">
-						<li>TA Parrilla: <?=$user_data[0]->ta_parrilla;?> visitas</li>
-						<li>TA Gascona: <?=$user_data[0]->ta_gascona;?> visitas</li>
-						<li>TA Aviles: <?=$user_data[0]->ta_aviles;?> visitas</li>
-						<li>TA Poniente: <?=$user_data[0]->ta_poniente;?> visitas</li>
-						<li>TA Aguila: <?=$user_data[0]->ta_aguila;?> visitas</li>
+						<li>TA Parrilla: <span class="badge secondary " id="parrilla"><?=$user_data[0]->ta_parrilla;?></span> visitas</li>
+						<li>TA Gascona: <span class="badge secondary " id="gascona"><?=$user_data[0]->ta_gascona;?></span> visitas</li>
+						<li>TA Aviles: <span class="badge secondary " id="aviles"><?=$user_data[0]->ta_aviles;?></span> visitas</li>
+						<li>TA Poniente: <span class="badge secondary " id="poniente"><?=$user_data[0]->ta_poniente;?></span> visitas</li>
+						<li>TA Aguila: <span class="badge secondary " id="aguila"><?=$user_data[0]->ta_aguila;?></span> visitas</li>
 					</ul>
 
-					<h6><strong>Visitas Tierra Astur:</strong> <?=$total;?></h6>
+					<h6><strong>Visitas Tierra Astur:</strong> <span class="badge secondary " id="total"><?=$total;?></span></h6>
 
 				<div class="close" id="logout">
 						<a href="<?=base_url()?>auth/logout"><img src="<?=base_url()?>assets/images/exit.png" alt="Logout" /></a>			
@@ -53,11 +53,11 @@
 	<div class="row">
 	<div class="large-12  small-6 columns small-centered text-center">
 		<ul class="no-bullet text-center">
-			<li><a href="<?=base_url()?>passport/sello/gascona/<?=$user_data[0]->id;?>" class="button expanded">sellar gascona</a></li>
-			<li><a href="<?=base_url()?>passport/sello/parrilla/<?=$user_data[0]->id;?>" class="button expanded">sellar parrilla</a></li>
-			<li><a href="<?=base_url()?>passport/sello/aguila/<?=$user_data[0]->id;?>" class="button expanded">sellar aguila</a></li>
-			<li><a href="<?=base_url()?>passport/sello/aviles/<?=$user_data[0]->id;?>" class="button expanded">sellar aviles</a></li>
-			<li><a href="<?=base_url()?>passport/sello/poniente/<?=$user_data[0]->id;?>" class="button expanded">sellar poniente</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/gascona/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar gascona</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/parrilla/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar parrilla</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/aguila/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar aguila</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/aviles/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar aviles</a></li>
+			<li><a data-url="<?=base_url()?>passport/sello/poniente/<?=$user_data[0]->id;?>" class="button expanded sumachigre">sellar poniente</a></li>
 		</ul>
 
 	</div>
