@@ -11,4 +11,5 @@
 	  $(document).foundation();
 	</script>
 <? endif; ?>
+<script src="<?=base_url()?>assets/js/jquery.alerts.js"></script>
 <script src="<?=base_url()?>assets/js/app.js"></script>

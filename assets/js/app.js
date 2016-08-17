@@ -13,35 +13,49 @@ $( document ).ready(function() {
 
 		var url_sello = $(this).attr('data-url');
 		var chigre = $(this).attr('data-chigre');
+		var clave_chigre = null;
 
 		//Input pidiendo clave
-		var clave_chigre = prompt("CAJERA: Introduzca clave centro TA "+chigre);
-		if (clave_chigre != null) {
-			 $.ajax({
-			     type: 'POST',
-			     url: 'pass_check/'+chigre+'/', 
-			     data: {'clave_chigre': clave_chigre}, //se manda la clave introducida por post
-			     dataType: 'text',  
-			     cache:false,
-			        success: function(data){
-			          console.log(data);
-			          	if(data === "true"){
-			          		sellame(url_sello);			          	
-			      		}else{
-							alert("Contraseña incorrecta");
-			      		}
-			        },
-			        error: function (data) {		      	
-			        console.log(data);
-			        alert("Contraseña incorrecta");
-			      }
-		    });
-		}else{
-			return false;			
-		}
+		//var clave_chigre = prompt("CAJERA: Introduzca clave centro TA "+chigre);
+		jPrompt('Cajera: Introduzca clave centro TA '+chigre, '', 'Clave de centro', function(r) {
+		    if( r ){
+		    	clave_chigre = r;		    	
+				if (clave_chigre != null && clave_chigre != "" ) {
+					 $.ajax({
+					     type: 'POST',
+					     url: 'pass_check/'+chigre+'/', 
+					     data: {'clave_chigre': clave_chigre}, //se manda la clave introducida por post
+					     dataType: 'text',  
+					     cache:false,
+					        success: function(data){
+					          //console.log(data);
+					          	if(data == "true"){
+					          		sellame(url_sello);			          	
+					      		}else{
+									jAlert('Contraseña incorrecta', 'Error...');
+									clave_chigre = null;
+					      		}
+					        },
+					        error: function (data) {		      	
+					        //console.log(data);
+					        jAlert('Contraseña incorrecta', 'Error...');
+					        clave_chigre = null;
+					      }
+				    });
+				}else{
+					clave_chigre = null;
+					jAlert('Contraseña incorrecta', 'Error...');
+					return false;		
+				}
 
-	});
+		    }else{
+				jAlert('La contraseña no puede estar vacía', 'Info');
+				return false;			    	
+		    }
 
+		});//Fin prompt
+
+	}); // Fin suma chigre
 
 //Callbacks
 function progress(percent, $element) {
@@ -68,7 +82,7 @@ function sellame(url_sello){
           $("span#poniente").text(data.user_data[0].ta_poniente);
           $("span#aguila").text(data.user_data[0].ta_aguila);
           $("span#total").text(data.total);
-
+		jAlert('¡Visita registrada! Gracias', 'VISITA');
         },
       error: function (data) {
         console.log(data);

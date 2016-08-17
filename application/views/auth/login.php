@@ -1,8 +1,7 @@
-<div class="large-7 small-12 columns large-centered"
-<div role="main" class="ui-content">
+<div class="large-7 small-12 columns large-centered">
+<div role="main" class="ui-content ">
 
-
-    <h4 class="mc-text-center">Abrir su pasaporte Tierra Astur</h4>
+<h6 class="mc-text-center text-center">Acceda a su pasaporte Tierra Astur</h6>
 
 <? 
 	if(isset($_SESSION['message_error'])):

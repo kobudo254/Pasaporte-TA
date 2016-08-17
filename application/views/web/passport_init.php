@@ -1,7 +1,7 @@
 <div class="large-6 columns small-10 large-centered small-centered">
 
-	<h2 class="text-center">Uuario dado de alta</h2>
-	<h6 class="text-center">Creando su pasaporte...</h6>
+	<h6 class="text-center">Uuario dado de alta</h6>
+	<p class="text-center">Creando su pasaporte...</p>
 
 	<div id="progressBar"><div></div></div>
 	
