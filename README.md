@@ -40,8 +40,8 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Asociar mac con email y user_id
 * Activar y desactivar logros
 * Control de cuenta atras de logos (te queda una visita para...)
-*
-
+* Flujo de emails (enviar cupones/premios)
+*.... CONTINUARÁ
 
 
 ### To Do ###
