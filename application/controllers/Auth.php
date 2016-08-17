@@ -16,6 +16,10 @@ Class Auth extends CI_Controller {
 
  		if (!$this->user_model->check_login()){
 
+ 			if($this->uri->segment(3)=="bye"):
+					$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
+			endif;
+
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
 			$data['page'] = 'auth/login';
@@ -120,6 +124,36 @@ Class Auth extends CI_Controller {
 		$this->load->view('web/wrap',$data);		
 	}
 
+
+	public function pass_check($chigre){
+
+		$clave = $this->input->post('clave_chigre');
+
+		switch($chigre){
+			case "gascona": $super_clave = GASCONA;
+							break;
+			case "parrilla": $super_clave = PARRILLA;
+								break;
+			case "aviles": $super_clave = AVILES;
+								break;
+			case "aguila": $super_clave = AGUILA;
+								break;
+			case "poniente": $super_clave = PONIENTE;
+							break;
+			default: return false;
+					break;
+		}
+
+		$data['ok'] = true;
+
+		if($super_clave == $clave):
+			echo "true";
+		else:
+			echo "false";
+		endif;
+	}
+
+
 	// Logout from admin page
 	public function logout() {
 
@@ -127,7 +161,7 @@ Class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
-		redirect('auth/index');
+		redirect('auth/index/bye');
 	}
 
 

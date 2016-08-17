@@ -15,7 +15,7 @@ class Passport extends CI_Controller {
 
 
 		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
-		$final = date("Y-m-d", strtotime("+".FECHA_VALIDED." month"));
+		$final = date("Y-m-d", strtotime("+".VALIDED." month"));
 		$this->sidrerias->reset_pasaporte($final);
 
 		//Asociamos premios logros
@@ -30,16 +30,24 @@ class Passport extends CI_Controller {
 	}
 
 
-	//Añadir sello y comprueba condiciones para premio
+
+	// This function call from AJAX
 	public function sello($chigre,$user){
 
-		$sidreria = "ta_".$chigre; // "ta_chigre1, ta_chigre2" para conocer el nombre del campo a actualizar
-		
+		$sidreria = "ta_".$chigre; // "ta_chigre1, ta_chigre2" para conocer el nombre del campo a actualizar		
+
 		$this->sidrerias->visitar($sidreria,$user);
 
-		redirect('auth/dashboard');
+		//Get user info: id, email....
+		$data['user_data'] = $this->user_model->read_user_information($this->session->userdata('correo'));
 
-	}	
+		//Count visits
+		$data['total'] = 0;
+		$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
 
+
+		//Either you can print value or you can send value to database
+		echo json_encode($data);
+	}
 
 }

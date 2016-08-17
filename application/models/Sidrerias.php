@@ -34,10 +34,10 @@ class Sidrerias extends CI_Model {
 
 		$data = array(
 		'user_id' => $id,
-		'3v' => FALSE,
-		'6v' => FALSE,
-		'10v' => FALSE,
-		'10v_deluxe' => FALSE
+		'tres_visitas' => FALSE,
+		'seis_visitas' => FALSE,
+		'diez_visitas' => FALSE,
+		'deluxe' => FALSE
 		);
 
 		$this->db->where('user_id',$id);

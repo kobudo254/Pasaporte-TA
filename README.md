@@ -35,6 +35,15 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Set css framework in config file: Foundation6 / JqueryMobile
 * Set CONSTANTS: claves centros y valided en número meses.
 
+### To Develop ###
+* Gestión de perfil usuario (cambiar avatar, ampliar datos...)
+* Asociar mac con email y user_id
+* Activar y desactivar logros
+* Control de cuenta atras de logos (te queda una visita para...)
+* Flujo de emails (enviar cupones/premios)
+*.... CONTINUARÁ
+
+
 ### To Do ###
 * Tests
 * Revisión de código

@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/passport/';
-//$config['base_url'] = 'http://90.0.0.17/passport/';
+//$config['base_url'] = 'http://pasaporte.tierra-astur.es/';
 
 
 /*
@@ -372,12 +372,12 @@ $config['encryption_key'] = '';
 |
 */
 $config['sess_driver'] = 'files';
-$config['sess_cookie_name'] = 'bek_galleta';
+$config['sess_cookie_name'] = 'cachipin';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = '/tmp';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
-$config['sess_regenerate_destroy'] = FALSE;
+$config['sess_regenerate_destroy'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

@@ -7,12 +7,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |--------------------------------------------------------------------------
 |
 */
-define('CLAVE_AGUILA', 'aguila');
-define('CLAVE_GASCONA', 'gascona');
-define('CLAVE_PARRILLA', 'parrilla');
-define('CLAVE_PONIENTE', 'poniente');
-define('CLAVE_AVILES', 'aviles');
-define('FECHA_VALIDED', '10'); //en meses
+define('AGUILA', '1');
+define('GASCONA', '2');
+define('PARRILLA', '3');
+define('PONIENTE', '4');
+define('AVILES', '5');
+
+define('VALIDED', '10'); //en meses -- En el futuro usar fecha exacta
 
 
 /*
