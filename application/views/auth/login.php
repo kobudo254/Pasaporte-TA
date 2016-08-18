@@ -1,4 +1,3 @@
-<div class="large-7 small-12 columns large-centered">
 <div role="main" class="ui-content ">
 
 <h6 class="mc-text-center text-center">Acceda a su pasaporte Tierra Astur</h6>
@@ -20,5 +19,5 @@
 	</form>
 
 
-</div><!-- /content -->
-</div>
+</div><!-- /content /main-->
+
