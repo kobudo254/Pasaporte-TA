@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 <? elseif($this->config->item('css_fw') === "foundation"): ?>
+    <link rel="stylesheet" href="<?=base_url()?>assets/css/foundation-icons.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/foundation.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/css/app.css">
     <script src="<?=base_url()?>assets/js/vendor/modernizr.js"></script>    

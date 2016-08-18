@@ -11,5 +11,6 @@
 	</p>
 
 </div>
-
-</div>
+		</div><!-- Cierre callout-->
+	</div><!-- Cierre 7 columns-->
+</div><!-- Cierre dash-->

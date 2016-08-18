@@ -24,7 +24,7 @@ class Passport extends CI_Controller {
 
 		//Loading view
 		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
-		$data['page'] = 'web/passport_init';
+		$data['page'] = 'auth/passport_init';
 		$this->load->view('web/wrap',$data);
 
 	}

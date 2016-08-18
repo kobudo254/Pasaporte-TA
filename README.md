@@ -42,6 +42,7 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Control de cuenta atras de logos (te queda una visita para...)
 * Flujo de emails (enviar cupones/premios)
 * Tutorial https://github.com/Gild/bootstrap-tour#readme
+* COMPATIBILIDAD TABLET
 *.... CONTINUARÁ
 
 
@@ -51,3 +52,4 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Aislamiento y refactoring
 * Performance
 * Cache SQL + PHP
+* DEPLOY SCRIPT CODEIGNITER 3 --> https://github.com/kenjis/codeigniter-deployer
