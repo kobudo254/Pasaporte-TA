@@ -5,6 +5,30 @@ $( document ).ready(function() {
 		progress(100, $('#progressBar'));
 	}
 
+  
+	  $( "a#mostrar_chigres" ).on( "click", function() {
+	      var elem = $('#mydashboard');
+	      var animationClass = "slide-out-left";
+	      var eleme = $('#botones_sidreria');
+	      var animationeClass = "slide-in-right";
+
+	      Foundation.Motion.animateOut(elem, animationClass,function(){
+	        Foundation.Motion.animateIn(eleme, animationeClass);
+	      });
+	  });
+
+
+	  $( "a#mostrar_dashboard" ).on( "click", function() {
+	      var elem = $('#mydashboard');
+	      var animationClass = "slide-in-left";
+
+	      var eleme = $('#botones_sidreria');
+	      var animationeClass = "slide-out-right";
+
+	      Foundation.Motion.animateOut(eleme, animationeClass,function(){
+	        Foundation.Motion.animateIn(elem, animationClass);
+	      });
+	  });
 
 	//Ajax call to count and add one visit
 	$(".sumachigre").click(function(event) {
@@ -17,7 +41,7 @@ $( document ).ready(function() {
 
 		//Input pidiendo clave
 		//var clave_chigre = prompt("CAJERA: Introduzca clave centro TA "+chigre);
-		jPrompt('Cajera: Introduzca clave centro TA '+chigre, '', 'Clave de centro', function(r) {
+		jPrompt('Clave sidrería '+chigre, '', 'Instrucciones cajera', function(r) {
 		    if( r ){
 		    	clave_chigre = r;		    	
 				if (clave_chigre != null && clave_chigre != "" ) {
@@ -82,7 +106,9 @@ function sellame(url_sello){
           $("span#poniente").text(data.user_data[0].ta_poniente);
           $("span#aguila").text(data.user_data[0].ta_aguila);
           $("span#total").text(data.total);
-		jAlert('¡Visita registrada! Gracias', 'VISITA');
+			jAlert('¡Visita registrada! Gracias', 'VISITA', function(){
+				$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+			});
         },
       error: function (data) {
         console.log(data);

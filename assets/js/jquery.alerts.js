@@ -72,7 +72,7 @@
 			
 			$("BODY").append(
 			  '<div id="popup_container" class="text-center">' +
-			    '<h1 id="popup_title"></h1>' +
+			    '<h4 id="popup_title"></h4>' +
 			    '<div id="popup_content">' +
 			      '<div id="popup_message"></div>' +
 				'</div>' +
@@ -96,8 +96,8 @@
 			$("#popup_message").html( $("#popup_message").text().replace(/\n/g, '<br />') );
 			
 			$("#popup_container").css({
-				minWidth: $("#popup_container").outerWidth(),
-				maxWidth: $("#popup_container").outerWidth()
+				minWidth: 0.90*$("#popup_container").outerWidth(),
+				maxWidth: 0.90*$("#popup_container").outerWidth()
 			});
 			
 			$.alerts._reposition();
