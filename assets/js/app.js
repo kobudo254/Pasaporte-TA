@@ -17,7 +17,7 @@ $( document ).ready(function() {
 
 		//Input pidiendo clave
 		//var clave_chigre = prompt("CAJERA: Introduzca clave centro TA "+chigre);
-		jPrompt('Cajera: Introduzca clave centro TA '+chigre, '', 'Clave de centro', function(r) {
+		jPrompt('Clave sidrería '+chigre, '', 'Instrucciones cajera', function(r) {
 		    if( r ){
 		    	clave_chigre = r;		    	
 				if (clave_chigre != null && clave_chigre != "" ) {

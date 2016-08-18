@@ -1,7 +1,9 @@
 <div class="row">
 
 	<div class="large-3 small-4 columns">
-		<img src="<?=base_url()?>assets/images/img_perfil.jpg" alt="Yo" width="150px" style="" />
+		<a href="<?=base_url()?>auth/dashboard/profile" id="profile_link">
+			<img src="<?=base_url()?>assets/images/img_perfil.jpg"  id="profile_pict" alt="Yo" width="150px" style="" />
+		</a>
 	</div>	
 
 	<div class="large-4 small-8 columns">
@@ -36,6 +38,7 @@
 </div><!-- Cierre callout-->
 
 
+	<div class="boton_sellar">
 
 		<ul class="nav">
 		    <li>
@@ -45,8 +48,9 @@
 		      </a>
 		  	</li>
 		</ul>
-<!--
-	<div class="large-12 columns">
+	</div>
+
+	<div id="botones_sidreria" class="large-12 small-12 columns">	
 		<div class="spaceball"></div>	
 		<div class="row">
 			<div class="large-12  small-6 columns small-centered text-center">
@@ -60,7 +64,6 @@
 			</div>
 		</div>
 	</div>
--->
 
 
 
