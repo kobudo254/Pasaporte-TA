@@ -5,7 +5,12 @@ $( document ).ready(function() {
 		progress(100, $('#progressBar'));
 	}
 
+	if($("#mydashboard a#mostrar_chigres").length>0){
+		$('#mydashboard').removeClass( "my_dashboard" );
+		$('#mydashboard').addClass( "my_dashboard_top" );
+	}
   
+
 	  $( "a#mostrar_chigres" ).on( "click", function() {
 	      var elem = $('#mydashboard');
 	      var animationClass = "slide-out-left";

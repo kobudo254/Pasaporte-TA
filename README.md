@@ -16,7 +16,7 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * MYSQL
 * PHP5
 * Codeigniter 3
-* Auth library https://www.formget.com/form-login-codeigniter/
+* Basic Auth library https://www.formget.com/form-login-codeigniter/
 
 ## Database ##
 * Tabla usuarios => Contiene datos de login, cuentas de visitas de cada centro, fecha caducidad de su pasaporte (AISLAR TABLA EN FUTURO).
@@ -34,6 +34,9 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * Set enviroment in config file.
 * Set css framework in config file: Foundation6 / JqueryMobile
 * Set CONSTANTS: claves centros y valided en número meses.
+* Set Cache On/Off
+* Set base_url
+* Set database group
 
 ### To Develop ###
 * Gestión de perfil usuario (cambiar avatar, ampliar datos...)
