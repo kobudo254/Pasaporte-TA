@@ -288,6 +288,16 @@ a#profile_link img#profile_pict{
 }
 
 
+/* Logros */
+
+img.logro.desactivado {
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
+
+
+
+
 /* Small only */
 @media screen and (max-width: 39.9375em) {
   body{

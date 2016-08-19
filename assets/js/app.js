@@ -1,6 +1,9 @@
 /* App index javascript file */
 $( document ).ready(function() {
 
+var localhost = $("html").attr('data-base-url');
+//console.log(localhost);
+
 	if($("#progressBar").length>0){
 		progress(100, $('#progressBar'));
 	}
@@ -52,7 +55,7 @@ $( document ).ready(function() {
 				if (clave_chigre != null && clave_chigre != "" ) {
 					 $.ajax({
 					     type: 'POST',
-					     url: 'pass_check/'+chigre+'/', 
+					     url: localhost+'auth/pass_check/'+chigre+'/', 
 					     data: {'clave_chigre': clave_chigre}, //se manda la clave introducida por post
 					     dataType: 'text',  
 					     cache:false,
@@ -127,7 +130,7 @@ function sellame(url_sello){
 function update_logro(totales,user_id){
  $.ajax({
      type: 'POST',
-     url: '../passport/check_total/'+user_id, 
+     url: localhost+'passport/check_total/'+user_id, 
      data: {'total_visitas': totales},
      dataType: 'json',  
      cache:false,

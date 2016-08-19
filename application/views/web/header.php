@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html data-base-url="<?=base_url()?>">   
 <head>
     <meta charset="iso-8859-1" />
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />    
@@ -18,5 +18,6 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/css/app.css">
     <script src="<?=base_url()?>assets/js/vendor/modernizr.js"></script>    
 <? endif; ?>
-    <?php if (isset($extraHeadContent)) {echo $extraHeadContent;} ?>        
+    <?php if (isset($extraHeadContent)) {echo $extraHeadContent;} ?>  
+
 </head>
