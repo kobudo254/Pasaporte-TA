@@ -111,8 +111,31 @@ function sellame(url_sello){
           $("span#poniente").text(data.user_data[0].ta_poniente);
           $("span#aguila").text(data.user_data[0].ta_aguila);
           $("span#total").text(data.total);
-			jAlert('¡Visita registrada! Gracias', 'VISITA', function(){
-				$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+
+          /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
+          update_logro(data.total,data.user_data[0].id);
+          	
+        },
+      error: function (data) {
+        console.log(data);
+      }
+	});
+}//Fin sellame
+
+
+
+function update_logro(totales,user_id){
+ $.ajax({
+     type: 'POST',
+     url: '../passport/check_total/'+user_id, 
+     data: {'total_visitas': totales},
+     dataType: 'json',  
+     cache:false,
+        success: function(data){
+        	 /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
+      		//console.log(data.msg);
+			jAlert(data.msg, 'VISITA REGISTRADA', function(){
+			//$( "a#mostrar_dashboard" ).click(); //Bye bye botones
 			});
         },
       error: function (data) {
@@ -120,6 +143,7 @@ function sellame(url_sello){
       }
 	});
 }//Fin sellame
+
 
 });
 

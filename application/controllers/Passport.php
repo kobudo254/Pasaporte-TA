@@ -45,9 +45,19 @@ class Passport extends CI_Controller {
 		$data['total'] = 0;
 		$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
 
-
-		//Either you can print value or you can send value to database
 		echo json_encode($data);
 	}
+
+
+
+	// This function call from AJAX
+	public function check_total($user_id){
+
+		$totales = $this->input->post('total_visitas');
+
+		$data['msg'] = "Visita registrada correctamente. ¡Gracias!";
+
+		echo json_encode($data);
+	}	
 
 }
