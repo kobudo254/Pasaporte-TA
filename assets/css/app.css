@@ -290,12 +290,31 @@ a#profile_link img#profile_pict{
 
 /* Logros */
 
-img.logro.desactivado {
-    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
-    filter: grayscale(100%);
+ul.logritos{
+  display: inline-flex;
+  margin-top: 20px;
 }
 
+  ul.logritos li{
+    display: inline;
+  }
 
+    img.logro.desactivado {
+        -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+        filter: grayscale(100%);
+    }
+
+
+
+a img.logro{
+    border: 4px solid #fefefe;
+    box-shadow: 0 0 0 1px hsla(0,0%,4%,.2);
+    display: inline-block;
+    line-height: 0;
+    max-width: 90%;
+    transition: box-shadow .2s ease-out;
+    border-radius: 5px;
+}
 
 
 /* Small only */

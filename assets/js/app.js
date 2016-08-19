@@ -128,25 +128,32 @@ function sellame(url_sello){
 
 
 function update_logro(totales,user_id){
- $.ajax({
-     type: 'POST',
-     url: localhost+'passport/check_total/'+user_id, 
-     data: {'total_visitas': totales},
-     dataType: 'json',  
-     cache:false,
-        success: function(data){
-        	 /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
-      		//console.log(data.msg);
-			jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
-				$( "a#mostrar_dashboard" ).click(); //Bye bye botones
-			});
-        },
-      error: function (data) {
-        console.log(data);
-      }
-	});
-}//Fin sellame
 
+	if(totales<10){
+
+	 	$.ajax({
+	     type: 'POST',
+	     url: localhost+'passport/check_total/'+user_id, 
+	     data: {'total_visitas': totales},
+	     dataType: 'json',  
+	     cache:false,
+	        success: function(data){
+	        	 /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
+	      		//console.log(data.msg);
+				jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
+					$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+				});
+	        },
+	      error: function (data) {
+	        console.log(data);
+	      }
+		});
+
+	}else{
+		window.location.replace(localhost+"passport/fin/"+user_id);
+	}
+
+}//Fin update
 
 });
 

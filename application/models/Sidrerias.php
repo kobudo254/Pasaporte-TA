@@ -61,5 +61,18 @@ class Sidrerias extends CI_Model {
 
    }
 
+   public function cobrar_premio($user,$visita){
+
+		$this->db->query("
+		    UPDATE premios 
+		    SET $visita = 1
+		    WHERE user_id = '".$user."'
+		    LIMIT 1
+		");
+
+		return true;
+
+   }
+
 
 }
