@@ -80,21 +80,24 @@ class Passport extends CI_Controller {
 			case $totales>6 && $totales < 10 : 	$falta = 10 - $totales;
 									$output_msg .= "¡Ánimo! Solo te falta ".$falta." visita(s) para recibir tu gran premio. ";	
 									$tipo_logro_uno="activado";
+									$tipo_logro_dos="activado";									
 									break;
 			case $totales == 10 :	//COMPROBAR SI HAY ALGUNA SIDREA a 0. SINO VAMOS POR DELUXE
 									$output_msg .= "¡Enohrabuena! Has conseguido tu segundo premio: <br> <h6><strong>¡Cena a la carta para 2 personas!</strong></h6> <p>Revisa tu email. ¡Sigue sellando visitas a TA!</p>";
 									$tipo_logro_uno="activado";
 									$tipo_logro_dos="activado";
+									$tipo_logro_tres="activado";
 									// Update database a true, enviar cupon por email, adjuntar image
+									//PASSPORT INIT AVISANDO 
 									break;
 			default: return false;
 					break;
 		}
 
 		$output_msg.="<ul class='menu logritos'>
-						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_3.jpg' class='logro ".$tipo_logro_uno."' alt='Postres y bebidas gratis' /></a</li>
-						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_3.jpg' class='logro ".$tipo_logro_dos."' alt='Postres y bebidas gratis' /></a</li>
-						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_3.jpg' class='logro ".$tipo_logro_tres."' alt='Postres y bebidas gratis' /></a</li>
+						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_3.jpg' class='thumbnail logro ".$tipo_logro_uno."' alt='Postres y bebidas gratis' /></a</li>
+						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_6.jpg' class='thumbnail logro ".$tipo_logro_dos."' alt='Postres y bebidas gratis' /></a</li>
+						<li width='33%'><a href='".base_url()."passport/help'><img src='".base_url()."assets/images/premio_10.jpg' class='thumbnail logro ".$tipo_logro_tres."' alt='Postres y bebidas gratis' /></a</li>
 					  </ul>";
 
 

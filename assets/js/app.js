@@ -137,8 +137,8 @@ function update_logro(totales,user_id){
         success: function(data){
         	 /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
       		//console.log(data.msg);
-			jAlert(data.msg, 'VISITA REGISTRADA', function(){
-			//$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+			jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
+				$( "a#mostrar_dashboard" ).click(); //Bye bye botones
 			});
         },
       error: function (data) {
