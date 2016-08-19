@@ -12,7 +12,7 @@
 	<p>Ahora puedes volver a participar en el juego. Gracias por confiar en Tierra Astur</p>
 
 	<p class="text-center">
-		<a href="<?=base_url()?>passport/init/<?=$user_id?>" alt="Ir al panel de usuario" class="button medium round"><i class="fi-refresh"></i> Jugar de nuevo</a>
+		<a href="<?=base_url()?>passport/init/<?=$user_id?>" alt="Jugar de nuevo" class="button medium round"><i class="fi-refresh"></i> Jugar de nuevo</a>
 	</p>
 		
 
