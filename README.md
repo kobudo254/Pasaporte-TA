@@ -41,13 +41,8 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 ### To Develop ###
 * Gestión de perfil usuario (cambiar avatar, ampliar datos...)
 * Asociar mac con email y user_id
-* Activar y desactivar logros
-* Control de cuenta atras de logos (te queda una visita para...)
 * Flujo de emails (enviar cupones/premios)
 * Tutorial https://github.com/Gild/bootstrap-tour#readme
-* COMPATIBILIDAD TABLET
-*.... CONTINUARÁ
-
 
 ### To Do ###
 * Tests
