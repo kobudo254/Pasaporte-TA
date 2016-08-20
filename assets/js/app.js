@@ -149,8 +149,27 @@ function update_logro(totales,user_id){
 	      }
 		});
 
-	}else{
-		window.location.replace(localhost+"passport/fin/"+user_id);
+	}else{ 
+
+		//Revisar si es deluxe
+		cuentas_chigre = [
+			$("span#parrilla").text(),
+			$("span#gascona").text(),
+			$("span#aviles").text(),
+			$("span#poniente").text(),
+			$("span#aguila").text()
+		];
+
+		var deluxe="";
+
+		if(jQuery.inArray( "0", cuentas_chigre ) == -1) {
+			//DELUXE!! Todos los chigres sellados
+			deluxe = "/deluxe";
+		}
+
+		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);
+
+		
 	}
 
 }//Fin update

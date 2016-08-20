@@ -65,7 +65,7 @@ class Passport extends CI_Controller {
 			case $totales < 3 : 	$falta = 3 - $totales;
 									$output_msg .= "Solo te falta ".$falta." visita(s) para recibir tu primer premio. ";									
 									break;
-			case $totales == 3 :	$output_msg .= "¡Enohrabuena! Has conseguido tu primer premio: <br> <h6><strong>¡Postres y bebida gratis!</strong></h6> <p>Te hemos enviado un cupón por correo. <br>¡Sigue sellando visitas a TA!</p>";
+			case $totales == 3 :	$output_msg .= "¡Enhorabuena! Has conseguido tu primer premio: <br> <h6><strong>¡Postres y bebida gratis!</strong></h6> <p>Te hemos enviado un cupón por correo. <br>¡Sigue sellando visitas a TA!</p>";
 									$tipo_logro_uno="activado";
 									$this->sidrerias->cobrar_premio($user_id,"tres_visitas");
 									// Enviar cupon por email
@@ -74,7 +74,7 @@ class Passport extends CI_Controller {
 									$output_msg .= "Solo te falta ".$falta." visita(s) para recibir tu segundo premio. ";	
 									$tipo_logro_uno="activado";
 									break;
-			case $totales == 6 :	$output_msg .= "¡Enohrabuena! Has conseguido tu segundo premio: <br> <h6><strong>¡Menú especial para 2 personas!</strong></h6> <p>Revisa tu email. <br>¡Sigue sellando visitas a TA!</p>";
+			case $totales == 6 :	$output_msg .= "¡Enhorabuena! Has conseguido tu segundo premio: <br> <h6><strong>¡Menú especial para 2 personas!</strong></h6> <p>Revisa tu email. <br>¡Sigue sellando visitas a TA!</p>";
 									$tipo_logro_uno="activado";
 									$tipo_logro_dos="activado";
 									$this->sidrerias->cobrar_premio($user_id,"seis_visitas");
@@ -85,10 +85,7 @@ class Passport extends CI_Controller {
 									$tipo_logro_uno="activado";
 									$tipo_logro_dos="activado";									
 									break;
-			case $totales == 10 :			
-									return true;
-									redirect('passport/fin/'.$user_id);
-									break;
+
 			default: return false;
 					break;
 		}
@@ -108,13 +105,18 @@ class Passport extends CI_Controller {
 
 
 	//Fin del juego, si todas las sidrerias son mas de 0, premio deluxe
-	public function fin($user_id){
-
-		$this->sidrerias->cobrar_premio($user_id,"diez_visitas");
+	public function fin($user_id,$deluxe = null){
 
 		$data['user_id'] = $user_id;
 
 		// COMPROBAR SI HAY ALGUNA SIDREA a 0. SINO VAMOS POR DELUXE
+		if($deluxe == null):
+			$this->sidrerias->cobrar_premio($user_id,"diez_visitas");
+			$data['deluxe'] = false;
+		else:
+			$this->sidrerias->cobrar_premio($user_id,"deluxe");
+			$data['deluxe'] = true;
+		endif;
 		
 		// enviar cupon por email
 									
