@@ -1,11 +1,19 @@
 /* App index javascript file */
 $( document ).ready(function() {
 
+var localhost = $("html").attr('data-base-url');
+//console.log(localhost);
+
 	if($("#progressBar").length>0){
 		progress(100, $('#progressBar'));
 	}
 
+	if($("#mydashboard a#mostrar_chigres").length>0){
+		$('#mydashboard').removeClass( "my_dashboard" );
+		$('#mydashboard').addClass( "my_dashboard_top" );
+	}
   
+
 	  $( "a#mostrar_chigres" ).on( "click", function() {
 	      var elem = $('#mydashboard');
 	      var animationClass = "slide-out-left";
@@ -47,7 +55,7 @@ $( document ).ready(function() {
 				if (clave_chigre != null && clave_chigre != "" ) {
 					 $.ajax({
 					     type: 'POST',
-					     url: 'pass_check/'+chigre+'/', 
+					     url: localhost+'auth/pass_check/'+chigre+'/', 
 					     data: {'clave_chigre': clave_chigre}, //se manda la clave introducida por post
 					     dataType: 'text',  
 					     cache:false,
@@ -106,15 +114,65 @@ function sellame(url_sello){
           $("span#poniente").text(data.user_data[0].ta_poniente);
           $("span#aguila").text(data.user_data[0].ta_aguila);
           $("span#total").text(data.total);
-			jAlert('¡Visita registrada! Gracias', 'VISITA', function(){
-				$( "a#mostrar_dashboard" ).click(); //Bye bye botones
-			});
+
+          /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
+          update_logro(data.total,data.user_data[0].id);
+          	
         },
       error: function (data) {
         console.log(data);
       }
 	});
 }//Fin sellame
+
+
+
+function update_logro(totales,user_id){
+
+	if(totales<10){
+
+	 	$.ajax({
+	     type: 'POST',
+	     url: localhost+'passport/check_total/'+user_id, 
+	     data: {'total_visitas': totales},
+	     dataType: 'json',  
+	     cache:false,
+	        success: function(data){
+	        	 /*Visita correcta y sellada, preguntamos si hay premio, y recogemos mensaje*/
+	      		//console.log(data.msg);
+				jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
+					$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+				});
+	        },
+	      error: function (data) {
+	        console.log(data);
+	      }
+		});
+
+	}else{ 
+
+		//Revisar si es deluxe
+		cuentas_chigre = [
+			$("span#parrilla").text(),
+			$("span#gascona").text(),
+			$("span#aviles").text(),
+			$("span#poniente").text(),
+			$("span#aguila").text()
+		];
+
+		var deluxe="";
+
+		if(jQuery.inArray( "0", cuentas_chigre ) == -1) {
+			//DELUXE!! Todos los chigres sellados
+			deluxe = "/deluxe";
+		}
+
+		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);
+
+		
+	}
+
+}//Fin update
 
 });
 

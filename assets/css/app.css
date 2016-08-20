@@ -1,40 +1,5 @@
 /* Application BEK standard CSS */
 
-body{
-
-    background: url("../images/background.jpg") #000 top right no-repeat;
-    background-size:cover;
-
-}
-/*
-div.row.wrapper:before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  
-  display: block;
-    background: url("../images/background.jpg") #000 top right no-repeat;
-    background-size:cover;
-    -webkit-filter: blur(3px);
-    -moz-filter: blur(3px);
-    -o-filter: blur(3px);
-    -ms-filter: blur(3px);
-    filter: blur(3px);
-  width: 100%;
-  height: 100%;
-}
-
-
-div.row.wrapper {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 0;
-}*/
-
-
 div.error{
 	color:#fef9d9;
   text-align: center;
@@ -56,11 +21,22 @@ p.ok{
 
 /* Dashboard */ 
 .my_dashboard{
-    margin-top: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 
-.my_dashboard .callout.primary{
+#botones_sidreria{
+margin-top:20px;
+}
+
+.my_dashboard_top{
+  margin-top: 25px;
+}
+
+.my_dashboard .callout.primary,.my_dashboard_top .callout.primary{
     background-color: rgba(0,0,0,0.65);
     border-radius:5px;
     color: #fff;
@@ -91,13 +67,6 @@ span.badge.visit#total{
         width: 0;
         background-color: #884c30;
     }
-
-@media screen and (min-width: 40em) {
-    ul.spacer li {
-     margin-top: 10px;
-    }
-  
-}
 
 ul.spacer{
  margin-top: 15px;
@@ -316,7 +285,105 @@ a#profile_link img#profile_pict{
   text-decoration: none;
   color: #555;
  /* background: #f5f5f5;*/
-}​
- 
+}
 
+
+/* Logros */
+
+ul.logritos{
+  display: inline-flex;
+  margin-top: 20px;
+}
+
+  ul.logritos li{
+    display: inline;
+  }
+
+    img.logro.desactivado {
+        -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+        filter: grayscale(100%);
+    }
+
+
+
+a img.logro{
+    border: 4px solid #fefefe;
+    box-shadow: 0 0 0 1px hsla(0,0%,4%,.2);
+    display: inline-block;
+    line-height: 0;
+    max-width: 90%;
+    transition: box-shadow .2s ease-out;
+    border-radius: 5px;
+}
+
+
+/* Iphone 4,5 XSMall */
+@media screen and (max-width: 320px) {
+  body{
+    background: url("../images/background.jpg") #000 top right no-repeat;
+    background-size:cover;
+  }
+
+  html{
+    font-size: 90%;
+  }
+
+}
+
+
+/* Small only */
+@media screen and (max-width: 39.9375em) {
+  body{
+    background: url("../images/background.jpg") #000 top right no-repeat;
+    background-size:cover;
+  }
+
+
+}
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+    ul.spacer li {
+     margin-top: 10px;
+    }
+  
+  body{
+    background: url("../images/background.jpg") center center no-repeat;
+    background-size:cover;
+  }
+
+
+  .child_my_dash{
+    margin: 0 auto;
+    float: none;
+  }
+  
+  .child_my_dash[data-page='auth/dashboard']{
+    margin: 0 ;
+    float: left;
+  }
+
+}
+
+/* Medium only */
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  #boton_sellar{
+    margin-top: 3em;
+  }
+
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+
+  #logout{
+      top: 125px;
+  }
+
+}
+
+/* Large only */
+@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+
+}
 

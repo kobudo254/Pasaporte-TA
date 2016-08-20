@@ -6,7 +6,7 @@
 		</a>
 	</div>	
 
-	<div class="large-4 small-8 columns">
+	<div class="large-3 small-8 columns">
 
 		<ul class="no-bullet spacer">
 			<li>#<?=$user_data[0]->id;?></li>
@@ -16,7 +16,7 @@
 
 	</div>	
 
-	<div class="large-5 small-12 columns">					
+	<div class="large-6 small-12 columns">					
 		<ul class="no-bullet menu smaller text-center">
 			<li class="text-center">Parrilla<br> <span class="badge visit " id="parrilla"><?=$user_data[0]->ta_parrilla;?></span></li>
 			<li class="text-center">Gascona<br> <span class="badge visit " id="gascona"><?=$user_data[0]->ta_gascona;?></span></li>
@@ -39,7 +39,7 @@
 </div><!-- Cierre 7 columns-->
 
 
-<div id="boton_sellar">
+<div id="boton_sellar" class="large-5 small-12 columns medium-4">
 
 	<ul class="nav">
 	    <li>
@@ -57,7 +57,7 @@
 <div id="botones_sidreria" class="large-12 small-12 columns">
 	<div class="spaceball"></div>	
 	<div class="row">
-		<div class="large-12  small-6 columns small-centered text-center">
+		<div class="large-4  medium-6 small-6 columns small-centered text-center">
 			<ul class="no-bullet text-center">
 				<li><a data-url="<?=base_url()?>passport/sello/gascona/<?=$user_data[0]->id;?>" data-chigre="gascona" class="button expanded sumachigre">Gascona</a></li>
 				<li><a data-url="<?=base_url()?>passport/sello/parrilla/<?=$user_data[0]->id;?>" data-chigre="parrilla" class="button expanded sumachigre">Parrilla</a></li>
