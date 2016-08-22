@@ -1,4 +1,4 @@
-# README TA Passport v0.1 #
+# README TA Passport v1.0 #
 
 Este readme explicara la tecnología y la configuración de start-up de la aplicación TA Passport.
 
@@ -10,7 +10,7 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 ### Resumen ###
 
 * Web app mobile first con framework jquerymobile para el frontend e indexdb para el almacenamiento de datos de usuario. La finalidad
-* App Version 0.1
+* App Version 1.0
 * Jquery mobile - http://demos.jquerymobile.com/1.4.5/
 * IndexDb https://rolandocaldas.com/html5/indexeddb-tu-base-de-datos-local-en-html5
 * MYSQL
@@ -21,6 +21,11 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 ## Database ##
 * Tabla usuarios => Contiene datos de login, cuentas de visitas de cada centro, fecha caducidad de su pasaporte (AISLAR TABLA EN FUTURO).
 * Tabla premios => Logros booleanos a true/false. PREMIOS: 3 visitas, 6 visitas, 10 visitas, 10 deluxe (Las 5 sidrerias entre las 10 visitas).
+
+## EDITAR / --> Para humanos
+La base de datos puede ser manipulada por la siguiente URL:  http://pasaporte.tierra-astur.es/scaffolding 
+Esto permite hacer un CRUD a las tablas de usuarios y premios que se pueden manejar facilmente para dar de alta, editar o borrar registros.
+Se solicita contraseña para acceder. Usaremos de clave: "crivencar2016". En caso de error redirecciona a tierra-astur.es
 
 ### Start Up / Configuracion ###
 * Summary of set up
@@ -41,13 +46,8 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 ### To Develop ###
 * Gestión de perfil usuario (cambiar avatar, ampliar datos...)
 * Asociar mac con email y user_id
-* Activar y desactivar logros
-* Control de cuenta atras de logos (te queda una visita para...)
 * Flujo de emails (enviar cupones/premios)
 * Tutorial https://github.com/Gild/bootstrap-tour#readme
-* COMPATIBILIDAD TABLET
-*.... CONTINUARÁ
-
 
 ### To Do ###
 * Tests

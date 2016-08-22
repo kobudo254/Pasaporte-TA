@@ -13,7 +13,8 @@ define('PARRILLA', '3');
 define('PONIENTE', '4');
 define('AVILES', '5');
 
-define('VALIDED', '10'); //en meses -- En el futuro usar fecha exacta
+define('VALIDED', '2017-06-30'); //Fecha fin validez pasaporte formato yyy-mm-dd
+define('REINICIO', '2017-09-01'); //Fecha reinicio validez pasaporte formato yyy-mm-dd
 
 
 /*

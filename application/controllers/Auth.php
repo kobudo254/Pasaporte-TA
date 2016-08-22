@@ -14,20 +14,35 @@ Class Auth extends CI_Controller {
 	// Show login page
 	public function index() {
 
- 		if (!$this->user_model->check_login()){
+		if ( strtotime(date('Y-m-d')) < strtotime(VALIDED) ):
+			
 
- 			if($this->uri->segment(3)=="bye"):
-					$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
-			endif;
+	 		if (!$this->user_model->check_login()){
+
+	 			if($this->uri->segment(3)=="bye"):
+						$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
+				endif;
+
+				//Vista principal
+				$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
+				$data['page'] = 'auth/login';
+				$this->load->view('web/wrap',$data);
+
+	 		}else{ 			
+	 			redirect('auth/dashboard');
+	 		}
+
+		else:
+			//Pasaporte no valido en verano, reactivación en 
+			$data['nueva_fecha'] = date('d-m-Y',strtotime(REINICIO));
 
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
-			$data['page'] = 'auth/login';
+			$data['page'] = 'auth/passport_invalid';
 			$this->load->view('web/wrap',$data);
 
- 		}else{ 			
- 			redirect('auth/dashboard');
- 		}
+		endif;
+
 
 	}
 

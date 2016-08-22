@@ -15,7 +15,8 @@ class Passport extends CI_Controller {
 
 
 		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
-		$final = date("Y-m-d", strtotime("+".VALIDED." month"));
+		//$final = date("Y-m-d", strtotime("+".VALIDED." month"));
+		$final = date("Y-m-d", strtotime(VALIDED));
 		$this->sidrerias->reset_pasaporte($final);
 
 		//Asociamos premios logros
@@ -57,6 +58,7 @@ class Passport extends CI_Controller {
 
 		$output_msg = "";
 		$falta = 0;
+		$tipo_logro = "";
 		$tipo_logro_uno ="desactivado";
 		$tipo_logro_dos ="desactivado";
 		$tipo_logro_tres ="desactivado";
@@ -68,7 +70,9 @@ class Passport extends CI_Controller {
 			case $totales == 3 :	$output_msg .= "¡Enhorabuena! Has conseguido tu primer premio: <br> <h6><strong>¡Postres y bebida gratis!</strong></h6> <p>Te hemos enviado un cupón por correo. <br>¡Sigue sellando visitas a TA!</p>";
 									$tipo_logro_uno="activado";
 									$this->sidrerias->cobrar_premio($user_id,"tres_visitas");
-									// Enviar cupon por email
+									$tipo_logro='tres_visitas';		
+									$this->session->set_userdata('premio','tres_visitas');	
+									$data['premio']=true;
 									break;
 			case $totales>3 && $totales < 6 : 	$falta = 6 - $totales;
 									$output_msg .= "Solo te falta ".$falta." visita(s) para recibir tu segundo premio. ";	
@@ -78,7 +82,9 @@ class Passport extends CI_Controller {
 									$tipo_logro_uno="activado";
 									$tipo_logro_dos="activado";
 									$this->sidrerias->cobrar_premio($user_id,"seis_visitas");
-									// Enviar cupon por email
+									$tipo_logro='seis_visitas';
+									$this->session->set_userdata('premio','seis_visitas');	
+									$data['premio']=true;
 									break;
 			case $totales>6 && $totales < 10 : 	$falta = 10 - $totales;
 									$output_msg .= "Solo te falta ".$falta." visita(s) para recibir tu gran premio. ";	
@@ -101,6 +107,7 @@ class Passport extends CI_Controller {
 		$data['msg'] = $output_msg;
 
 		echo json_encode($data);
+
 	}	
 
 
@@ -108,24 +115,71 @@ class Passport extends CI_Controller {
 	public function fin($user_id,$deluxe = null){
 
 		$data['user_id'] = $user_id;
+		$_to_email = "";
 
 		// COMPROBAR SI HAY ALGUNA SIDREA a 0. SINO VAMOS POR DELUXE
 		if($deluxe == null):
 			$this->sidrerias->cobrar_premio($user_id,"diez_visitas");
+			$_to_email = "diez_visitas";
 			$data['deluxe'] = false;
 		else:
 			$this->sidrerias->cobrar_premio($user_id,"deluxe");
 			$data['deluxe'] = true;
+			$_to_email = "deluxe";
 		endif;
 		
-		// enviar cupon por email
-									
+		$this->session->set_userdata('premio',$_to_email);		
+
 		//Loading view
 		$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
 		$data['page'] = 'auth/passport_destroy';
 		$this->load->view('web/wrap',$data);
 
+	}
 
+	//Enviar cupon por mail
+	public function mailing_me(){
+
+		$correo = $this->session->userdata('correo');
+		$premio = $this->session->userdata('premio');
+
+		$this->load->library('email');
+
+		$subject = 'Pasaporte Sidrerías Tierra Astur - Su premio';
+		$message = '<h5>Gracias por participar en el Pasporte Tierra Astur.</h5><p> Este es el cupon de su premio. Solo tiene que imprimirlo y mostrarlo a la cajera de cualquiera de nuestras sidrerías. No olvide reclamarlo <b>antes</b> de sentarse a una mesa, para que puedan coordinarse adecuadamente con el maitre y resto de camareros.</p>
+			<p><a href="http://passport.tierra-astur.es/pdf/cupon_'.$premio.'.pdf">DESCARGAR PREMIO</a></p>
+			<p> Siga participando y acumule más visitas.</p>';
+
+		// Get full html:
+		$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+		    <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
+		    <title>' . html_escape($subject) . '</title>
+		    <style type="text/css">
+		        body {
+		            font-family: Arial, Verdana, Helvetica, sans-serif;
+		            font-size: 16px;
+		        }
+		    </style>
+		</head>
+		<body>
+		' . $message . '
+		</body>
+		</html>';
+		// Also, for getting full html you may use the following internal method:
+		$body = $this->email->full_html($subject, $message);
+
+		$result = $this->email
+		        ->from('online@crivencar.com')
+		        ->reply_to('online@crivencar.com')    // Optional, an account where a human being reads.
+		        ->to($correo)
+		        ->subject($subject)
+		        ->message($body)
+		        ->send();
+
+		$debug = $this->email->print_debugger();
+		echo json_encode($result);
 	}
 
 }
