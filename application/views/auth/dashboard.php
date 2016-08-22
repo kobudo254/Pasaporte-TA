@@ -1,9 +1,13 @@
 <div class="row">
+	
+	<div class="large-12 small-12 columns" id="progress"></div>
 
-	<div class="large-3 small-4 columns">
-		<a href="<?=base_url()?>auth/dashboard/profile" id="profile_link">
-			<img src="<?=base_url()?>assets/images/img_perfil.jpg"  id="profile_pict" alt="Yo" width="150px" style="" />
-		</a>
+
+
+	<div class="large-3 small-4 columns" id="profile_me">
+		<label class="avatar" id="avatar_cient" title="Cambiar avatar" style="background-image:url('<?=base_url()?>assets/images/avatars/<?=$user_avatar;?>')" width="150px"> 
+        	<input type=file accept="image/*" name="avatar" class="avatar">
+     	 </label>
 	</div>	
 
 	<div class="large-3 small-8 columns">

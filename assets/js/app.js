@@ -208,10 +208,48 @@ function update_logro(totales,user_id){
 
 	}
 
-
-
-
 }//Fin update
+
+	//Cambiar avatar
+	 $("input.avatar").change(function(){
+	        readURL(this);
+	  });
+
+
+	/* read url from input files */
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            url="url('"+e.target.result+"')";
+	            element = $(input).parents( "label.avatar");
+	            element.css("background-image", url); 
+	        }
+	        
+	        reader.readAsDataURL(input.files[0]);
+
+		 	$.ajax({
+		     type: 'POST',
+		     url: localhost+'passport/mailing_me/', 
+		     data: {'correo': true},
+		     dataType: 'json',  
+		     cache:false,
+		        success: function(data){
+	 				console.log(data);
+		        },
+		      error: function (data) {
+		        	console.log(data);
+		      }
+			});
+
+	    }
+
+	}
+
+
+
+
 
 });
 

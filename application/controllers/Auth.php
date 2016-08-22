@@ -14,6 +14,7 @@ Class Auth extends CI_Controller {
 	// Show login page
 	public function index() {
 
+
 		if ( strtotime(date('Y-m-d')) < strtotime(VALIDED) ):
 			
 
@@ -50,6 +51,7 @@ Class Auth extends CI_Controller {
 	// User dashboard
 	public function dashboard(){
 
+
 		if ($this->user_model->check_login()){
 			
 			//Get user info: id, email....
@@ -59,6 +61,9 @@ Class Auth extends CI_Controller {
 			//Count visits
 			$data['total'] = 0;
 			$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
+
+			//Lookup for avatar, if not use this one. Default s avatar.
+			$data['user_avatar'] = 'img_perfil.jpg';
 
 
 			//Vista principal
@@ -168,6 +173,33 @@ Class Auth extends CI_Controller {
 		endif;
 	}
 
+	//Change avatar{
+ public function avatar()
+    {
+
+            $config['upload_path']          = './assets/img/avatars/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 3000;
+            $config['max_width']            = 5000;
+            $config['max_height']           = 5000;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('avatar'))
+            {
+                $this->session->set_flashdata('message',  $this->upload->display_errors());
+                $avatar = 'img_perfil.jpg';
+            }
+            else
+            {
+                $data = array('upload_data' => $this->upload->data());
+                $avatar = $this->upload->data('file_name');
+            }
+
+            json_response($data);
+    }
+
+
 
 	// Logout from admin page
 	public function logout() {
@@ -176,6 +208,9 @@ Class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
+		
+		$this->output->delete_cache();
+
 		redirect('auth/index/bye');
 	}
 
