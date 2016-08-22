@@ -1,17 +1,16 @@
 <?php
 
-$lang['scaff_view_records']		= 'View Records';
-$lang['scaff_create_record']	= 'Create New Record';
-$lang['scaff_add']				= 'Add Data';
-$lang['scaff_view']				= 'View Data';
-$lang['scaff_edit']				= 'Edit';
-$lang['scaff_delete']			= 'Delete';
-$lang['scaff_view_all']			= 'View All';
-$lang['scaff_yes']				= 'Yes';
+$lang['scaff_view_records']		= 'Ver registros';
+$lang['scaff_create_record']	= 'Dar de alta';
+$lang['scaff_add']				= 'Añadir datos';
+$lang['scaff_view']				= 'Ver datos';
+$lang['scaff_edit']				= 'Editar';
+$lang['scaff_delete']			= 'Eliminar';
+$lang['scaff_view_all']			= 'Ver todos';
+$lang['scaff_yes']				= 'Si';
 $lang['scaff_no']				= 'No';
-$lang['scaff_no_data']			= 'No data exists for this table yet.';
-$lang['scaff_del_confirm']		= 'Are you sure you want to delete the following row:';
-
+$lang['scaff_no_data']			= 'Esta tabla no contiene datos.';
+$lang['scaff_del_confirm']		= '¿Quiere eliminar el registro con el ID?';
 
 /* End of file scaffolding_lang.php */
 /* Location: ./application/language/english/scaffolding_lang.php */
