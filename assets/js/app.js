@@ -129,6 +129,8 @@ function sellame(url_sello){
 
 function update_logro(totales,user_id){
 
+	var	premio = false;
+
 	if(totales<10){
 
 	 	$.ajax({
@@ -142,7 +144,25 @@ function update_logro(totales,user_id){
 	      		//console.log(data.msg);
 				jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
 					$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+
 				});
+				//console.log(data.premio)
+				if(data.premio == true){
+					console.log("Enviando mail.");
+				 	$.ajax({
+				     type: 'POST',
+				     url: localhost+'passport/mailing_me/', 
+				     data: {'correo': true},
+				     dataType: 'json',  
+				     cache:false,
+				        success: function(data){
+			 				console.log(data);
+				        },
+				      error: function (data) {
+				        	console.log(data);
+				      }
+					});
+				}
 	        },
 	      error: function (data) {
 	        console.log(data);
@@ -167,10 +187,29 @@ function update_logro(totales,user_id){
 			deluxe = "/deluxe";
 		}
 
-		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);
+		//console.log("Enviando mail.");
+		//Mailing
+	 	$.ajax({
+	     type: 'POST',
+	     url: localhost+'passport/mailing_me/', 
+	     data: {'correo': true},
+	     dataType: 'json',  
+	     cache:false,
+	        success: function(data){
+ 				console.log(data);
+	        },
+	      error: function (data) {
+	        	console.log(data);
+	      }
+		});
 
-		
+
+		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);	
+
 	}
+
+
+
 
 }//Fin update
 
