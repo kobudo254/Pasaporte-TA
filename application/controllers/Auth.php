@@ -52,8 +52,15 @@ Class Auth extends CI_Controller {
 	public function dashboard(){
 
 
+
 		if ($this->user_model->check_login()){
 			
+			if($this->uri->segment(3)=="intro"){
+				$data['tutorial'] = true;
+			}
+
+			$data['user_avatar'] = './assets/images/avatars/img_perfil.jpg';
+
 			//Get user info: id, email....
 			$data['user_data'] = $this->user_model->read_user_information($this->session->userdata('correo'));
 			$this->session->set_userdata('user_id',$data['user_data'][0]->id);
@@ -76,6 +83,11 @@ Class Auth extends CI_Controller {
    					$data['user_avatar'] = $image;
 				endforeach;				
 			endif;
+
+
+			//Si es la primera visita....
+			$data['extraFooterContent'] = '<script src="'.base_url().'assets/js/intro.js"></script>';
+
 
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';

@@ -6,7 +6,7 @@
 	
 	<div class="text-center">
 		<br>
-		<a href="<?=base_url()?>auth/dashboard" alt="Ir al panel de usuario" class="button small round hide" id="continuar">Continuar</a>
+		<a href="<?=base_url()?>auth/dashboard/intro" alt="Ir al panel de usuario" class="button small round hide" id="continuar">Continuar</a>
 	</div>
 
 </div>

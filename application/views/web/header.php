@@ -18,5 +18,5 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/css/app.css">
     <script src="<?=base_url()?>assets/js/vendor/modernizr.js"></script>    
 <? endif; ?>
-    <?php if (isset($extraHeadContent)) {echo $extraHeadContent;} ?>  
+<?php if (isset($extraHeadContent)) {echo $extraHeadContent;} ?>  
 </head>

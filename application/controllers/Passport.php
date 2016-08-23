@@ -13,7 +13,6 @@ class Passport extends CI_Controller {
 	//Inicia un nuevo pasaporte y crea todo lo necesario mientras se muestra un inicializador
 	public function init($user_id){
 
-
 		//Creamos la ficha de los 5 centros a 0 visitas. Fecha valided pasaporte		
 		//$final = date("Y-m-d", strtotime("+".VALIDED." month"));
 		$final = date("Y-m-d", strtotime(VALIDED));

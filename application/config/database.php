@@ -71,11 +71,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-if(ENVIRONMENT == "development"):
-	$active_group = 'default';
-else:
-	$active_group = 'production';
-endif;
+$active_group = 'default';
+//$active_group = 'production';
 
 $query_builder = TRUE;
 

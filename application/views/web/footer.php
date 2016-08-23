@@ -1,4 +1,7 @@
 <footer>
+	<? if(isset($tutorial)): ?>
+		<div id="start_tutorial"></div>
+	<? endif; ?>
 </footer>
 <div class="modal"><!--  bottom of page --></div>
 <? if($this->config->item('css_fw') == "jqm"): ?>
@@ -12,7 +15,6 @@
 	  $(document).foundation();
 	</script>
 <? endif; ?>
+<?php if (isset($extraFooterContent)) {echo $extraFooterContent;} ?>  
 <script src="<?=base_url()?>assets/js/jquery.alerts.js"></script>
 <script src="<?=base_url()?>assets/js/app.js"></script>
-
-

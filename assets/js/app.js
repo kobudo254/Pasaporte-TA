@@ -8,6 +8,15 @@ var localhost = $("html").attr('data-base-url');
 		progress(100, $('#progressBar'));
 	}
 
+
+	//IntroJS tutorial si existe el div
+	if($("#start_tutorial").length>0){
+		$( window ).load(function() {
+			introJs().start();
+		});
+	}
+
+
 	if($("#mydashboard a#mostrar_chigres").length>0){
 		$('#mydashboard').removeClass( "my_dashboard" );
 		$('#mydashboard').addClass( "my_dashboard_top" );
@@ -243,7 +252,7 @@ function update_logro(totales,user_id){
 		    //console.log(imagen);
 		    if(imagen != null){
 		    	$("img#img_avatar").remove();
-				var img = $('<img id="img_avatar" src='+imagen+' />'); 
+				var img = $('<img id="img_avatar" src='+imagen+' class="avatar" />'); 
 				img.appendTo('#profile_me form');
 		    }
 		  }

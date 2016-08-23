@@ -1,4 +1,4 @@
-# README TA Passport v1.0 #
+# README TA Passport v1.5 #
 
 Este readme explicara la tecnología y la configuración de start-up de la aplicación TA Passport.
 
@@ -8,10 +8,10 @@ Este readme explicara la tecnología y la configuración de start-up de la aplic
 * juancar1987 [at] gmail.com
 
 ### Resumen ###
-
 * Web app mobile first con framework jquerymobile para el frontend e indexdb para el almacenamiento de datos de usuario. La finalidad
-* App Version 1.0
+* App Version 1.5
 * Jquery mobile - http://demos.jquerymobile.com/1.4.5/
+* Foundation 6
 * IndexDb https://rolandocaldas.com/html5/indexeddb-tu-base-de-datos-local-en-html5
 * MYSQL
 * PHP5
@@ -28,31 +28,21 @@ Esto permite hacer un CRUD a las tablas de usuarios y premios que se pueden mane
 Se solicita contraseña para acceder. Usaremos de clave: "crivencar2016". En caso de error redirecciona a tierra-astur.es
 
 ### Start Up / Configuracion ###
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Start Up / Configuracion ###
-* Set enviroment in config file.
+* Set enviroment in config file config/config.php
+* Set database group: config/database.php
 * Set css framework in config file: Foundation6 / JqueryMobile
-* Set CONSTANTS: claves centros y valided en número meses.
+* Set CONSTANTS: claves centros y valided en fecha.
 * Set Cache On/Off
-* Set base_url
-* Set database group
 
 ### To Develop ###
-* Gestión de perfil usuario (cambiar avatar, ampliar datos...)
 * Asociar mac con email y user_id
-* Flujo de emails (enviar cupones/premios)
 * Tutorial https://github.com/Gild/bootstrap-tour#readme
+* Cache?!
+* Implementación con APP.
 
 ### To Do ###
 * Tests
 * Revisión de código
 * Aislamiento y refactoring
 * Performance
-* Cache SQL + PHP
 * DEPLOY SCRIPT CODEIGNITER 3 --> https://github.com/kenjis/codeigniter-deployer
