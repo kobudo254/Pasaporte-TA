@@ -1,4 +1,38 @@
 /* Application BEK standard CSS */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 0, 0, 0, .8 ) url('../images/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+.avatar{
+
+    max-width:100%;
+    max-height:115px;
+    overflow:hidden;
+    position:relative;
+    border-radius:5px;
+    box-shadow: 0 0 7px 5px #000;
+    border: 1px solid #111;
+    margin-top: 18px;
+}
+
+form input.avatar { display: none; }
+
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
 
 div.error{
 	color:#fef9d9;
@@ -337,7 +371,6 @@ a img.logro{
     background: url("../images/background.jpg") #000 top right no-repeat;
     background-size:cover;
   }
-
 
 }
 

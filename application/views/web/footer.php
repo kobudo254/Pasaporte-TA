@@ -1,5 +1,6 @@
 <footer>
 </footer>
+<div class="modal"><!--  bottom of page --></div>
 <? if($this->config->item('css_fw') == "jqm"): ?>
     <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.mobile-1.4.5.min.js"></script>
@@ -13,3 +14,5 @@
 <? endif; ?>
 <script src="<?=base_url()?>assets/js/jquery.alerts.js"></script>
 <script src="<?=base_url()?>assets/js/app.js"></script>
+
+

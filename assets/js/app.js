@@ -129,6 +129,8 @@ function sellame(url_sello){
 
 function update_logro(totales,user_id){
 
+	var	premio = false;
+
 	if(totales<10){
 
 	 	$.ajax({
@@ -142,7 +144,25 @@ function update_logro(totales,user_id){
 	      		//console.log(data.msg);
 				jAlert(data.msg, 'VISITA REGISTRADA CORRECTAMENTE', function(){
 					$( "a#mostrar_dashboard" ).click(); //Bye bye botones
+
 				});
+				//console.log(data.premio)
+				if(data.premio == true){
+					console.log("Enviando mail.");
+				 	$.ajax({
+				     type: 'POST',
+				     url: localhost+'passport/mailing_me/', 
+				     data: {'correo': true},
+				     dataType: 'json',  
+				     cache:false,
+				        success: function(data){
+			 				console.log(data);
+				        },
+				      error: function (data) {
+				        	console.log(data);
+				      }
+					});
+				}
 	        },
 	      error: function (data) {
 	        console.log(data);
@@ -167,12 +187,80 @@ function update_logro(totales,user_id){
 			deluxe = "/deluxe";
 		}
 
-		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);
+		//console.log("Enviando mail.");
+		//Mailing
+	 	$.ajax({
+	     type: 'POST',
+	     url: localhost+'passport/mailing_me/', 
+	     data: {'correo': true},
+	     dataType: 'json',  
+	     cache:false,
+	        success: function(data){
+ 				console.log(data);
+	        },
+	      error: function (data) {
+	        	console.log(data);
+	      }
+		});
 
-		
+
+		window.location.replace(localhost+"passport/fin/"+user_id+deluxe);	
+
 	}
 
 }//Fin update
+
+	//Cambiar avatar
+	/* read url from input files */
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        
+	        reader.onload = function (e) {
+	            url="'"+e.target.result+"'";
+	            element = $("img#img_avatar");
+	            element.attr("src", url); 
+	            console.log(element);
+	        }	        
+	        reader.readAsDataURL(input.files[0]);
+	    }
+
+	}
+
+
+
+	function do_upload(input) {
+		var fd = new FormData();    
+		fd.append( 'userfile', input.files[0] );
+
+		$.ajax({
+		  url: localhost+"auth/avatar/",
+		  data: fd,
+		  processData: false,
+		  contentType: false,
+		  type: 'POST',
+		  success: function(imagen){
+		    //console.log(imagen);
+		    if(imagen != null){
+		    	$("img#img_avatar").remove();
+				var img = $('<img id="img_avatar" src='+imagen+' />'); 
+				img.appendTo('#profile_me form');
+		    }
+		  }
+		});
+
+		return true;
+	};
+
+	$("img#img_avatar").on( "click", function() {
+		$("input.avatar").click();
+	});
+
+	 $("input.avatar").change(function(){
+	  	do_upload(this);
+	   	//readURL(this);
+	});
+
 
 });
 

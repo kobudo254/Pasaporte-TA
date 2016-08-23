@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?=base_url()?>assets/images/favicon.ico" /> 
     <link rel="stylesheet" href="<?=base_url()?>assets/css/_reset.css">
-
 <? if($this->config->item('css_fw') == "jqm"): ?>
     <link rel="stylesheet" href="<?=base_url()?>assets/css/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
@@ -20,5 +19,4 @@
     <script src="<?=base_url()?>assets/js/vendor/modernizr.js"></script>    
 <? endif; ?>
     <?php if (isset($extraHeadContent)) {echo $extraHeadContent;} ?>  
-
 </head>

@@ -14,26 +14,43 @@ Class Auth extends CI_Controller {
 	// Show login page
 	public function index() {
 
- 		if (!$this->user_model->check_login()){
 
- 			if($this->uri->segment(3)=="bye"):
-					$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
-			endif;
+		if ( strtotime(date('Y-m-d')) < strtotime(VALIDED) ):
+			
+
+	 		if (!$this->user_model->check_login()){
+
+	 			if($this->uri->segment(3)=="bye"):
+						$this->session->set_flashdata('message_error', '<p class="ok">Ha salido correctamente. Hasta luego.</p>');
+				endif;
+
+				//Vista principal
+				$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
+				$data['page'] = 'auth/login';
+				$this->load->view('web/wrap',$data);
+
+	 		}else{ 			
+	 			redirect('auth/dashboard');
+	 		}
+
+		else:
+			//Pasaporte no valido en verano, reactivación en 
+			$data['nueva_fecha'] = date('d-m-Y',strtotime(REINICIO));
 
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
-			$data['page'] = 'auth/login';
+			$data['page'] = 'auth/passport_invalid';
 			$this->load->view('web/wrap',$data);
 
- 		}else{ 			
- 			redirect('auth/dashboard');
- 		}
+		endif;
+
 
 	}
 
 
 	// User dashboard
 	public function dashboard(){
+
 
 		if ($this->user_model->check_login()){
 			
@@ -45,6 +62,20 @@ Class Auth extends CI_Controller {
 			$data['total'] = 0;
 			$data['total']= $data['user_data'][0]->ta_parrilla + $data['user_data'][0]->ta_gascona + $data['user_data'][0]->ta_aguila + $data['user_data'][0]->ta_poniente + $data['user_data'][0]->ta_aviles;
 
+			//Lookup for avatar, if not use this one. Defaults avatar.
+			$images = null;
+			$directory = './assets/images/avatars/';
+			$images = glob($directory.$this->session->userdata('user_id').".{jpg,jpeg,png,gif}", GLOB_BRACE);
+			//var_dump($images);
+			if(empty($images) || $images == null):
+				$data['user_avatar'] = './assets/images/avatars/img_perfil.jpg';
+			else:
+
+				foreach($images as $image):
+					//echo $image;
+   					$data['user_avatar'] = $image;
+				endforeach;				
+			endif;
 
 			//Vista principal
 			$data['seo']['titulo'] = 'Pasaporte Tierra Astur';
@@ -153,6 +184,75 @@ Class Auth extends CI_Controller {
 		endif;
 	}
 
+	//Change avatar{
+ 	public function avatar()
+    {
+
+
+        $config['upload_path']          = './assets/images/avatars/';
+
+	    $status = "";
+	    $msg = "";
+	    $file_element_name = 'userfile';
+	     
+	    if (empty($_FILES['userfile']))
+	    {
+	        $status = "error";
+	        $msg = "Error al subir el fichero";
+	    }
+	     
+	    if ($status != "error")
+	    {
+
+	    	$images = null;
+			$images = glob($config['upload_path'].$this->session->userdata('user_id').".{jpg,jpeg,png,gif}", GLOB_BRACE);
+			//var_dump($images);
+			if(!empty($images)):
+				foreach($images as $image):
+					//delete last avatar
+   					unlink($image);
+				endforeach;				
+			endif;
+
+
+	        $config['upload_path'] = './assets/images/avatars/';
+	        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+	        $config['max_size'] = 1024 * 8;
+	        $config['file_name'] = $this->session->userdata('user_id');
+	 
+	        $this->load->library('upload', $config);
+	 
+	        if (!$this->upload->do_upload($file_element_name))
+	        {
+	            $status = 'error';
+	            $msg = $this->upload->display_errors('', '');
+	        }
+	        else
+	        {
+	            $data = $this->upload->data();
+	            $file_id = $data['file_name'];
+	            if($file_id)
+	            {
+	                $status = "success";
+	                $msg = "¡Avatar cambiado!";
+	                $data['imagen'] = $data['file_name'];
+	            }
+	            else
+	            {
+	                unlink($data['full_path']);
+	                $status = "error";
+	                $msg = "Ha ocurrido un error con el fichero. Inténtelo de nuevo.";
+	                $data['imagen'] = null;
+	            }
+	        }
+	        @unlink($_FILES[$file_element_name]);
+	    }
+	    echo json_encode(base_url().'assets/images/avatars/'.$data['imagen'],JSON_UNESCAPED_SLASHES);
+
+
+    }
+
+
 
 	// Logout from admin page
 	public function logout() {
@@ -161,6 +261,9 @@ Class Auth extends CI_Controller {
 		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('message_error', '<p class="ok">Usuario TA correcto, bienvenido a su pasaporte.</p>');
+		
+		$this->output->delete_cache();
+
 		redirect('auth/index/bye');
 	}
 
