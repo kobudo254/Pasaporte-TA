@@ -45,9 +45,9 @@
       /* CSS class that is added to the helperLayer */
       highlightClass: '',
       /* Close introduction when pressing Escape button? */
-      exitOnEsc: true,
+      exitOnEsc: false,
       /* Close introduction when clicking on overlay layer? */
-      exitOnOverlayClick: true,
+      exitOnOverlayClick: false,
       /* Show step numbers in introduction? */
       showStepNumbers: true,
       /* Let user use keyboard to navigate the tour? */
@@ -970,7 +970,7 @@
 
       //skip button
       var skipTooltipButton = document.createElement('a');
-      skipTooltipButton.className = 'introjs-button introjs-skipbutton';
+      skipTooltipButton.className = 'introjs-button introjs-skipbutton bye';
       _setAnchorAsButton(skipTooltipButton);
       skipTooltipButton.innerHTML = this._options.skipLabel;
 
@@ -1015,6 +1015,7 @@
       skipTooltipButton.innerHTML = this._options.skipLabel;
     } else if (this._introItems.length - 1 == this._currentStep || this._introItems.length == 1) {
       skipTooltipButton.innerHTML = this._options.doneLabel;
+      skipTooltipButton.className = 'introjs-button introjs-skipbutton';
       prevTooltipButton.className = 'introjs-button introjs-prevbutton';
       nextTooltipButton.className = 'introjs-button introjs-nextbutton introjs-disabled';
       nextTooltipButton.tabIndex = '-1';
@@ -1703,7 +1704,7 @@
         this._introCompleteCallback = providedCallback;
       } else {
         throw new Error('Provided callback for oncomplete was not a function.');
-      }
+      }      
       return this;
     },
     onhintsadded: function(providedCallback) {

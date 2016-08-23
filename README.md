@@ -36,8 +36,7 @@ Se solicita contraseña para acceder. Usaremos de clave: "crivencar2016". En cas
 
 ### To Develop ###
 * Asociar mac con email y user_id
-* Tutorial https://github.com/Gild/bootstrap-tour#readme
-* Cache?!
+* Cache
 * Implementación con APP.
 
 ### To Do ###

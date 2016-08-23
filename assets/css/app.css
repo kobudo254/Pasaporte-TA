@@ -11,15 +11,15 @@
 }
 
 .avatar{
-
-    max-width:100%;
-    max-height:115px;
-    overflow:hidden;
-    position:relative;
-    border-radius:5px;
-    box-shadow: 0 0 7px 5px #000;
-    border: 1px solid #111;
-    margin-top: 18px;
+max-width:100%;
+max-height:115px;
+overflow:hidden;
+position:relative;
+border-radius:5px;
+box-shadow: 0 0 7px 5px #000;
+border: 1px solid #111;
+margin-top: 18px;
+z-index: 10;
 }
 
 form input.avatar { display: none; }
@@ -417,10 +417,10 @@ tr.introjs-showElement > th {
   border-radius: 4px;
   box-shadow: 0 2px 15px rgba(0,0,0,.4);
   -webkit-transition: all 0.3s ease-out;
-     -moz-transition: all 0.3s ease-out;
-      -ms-transition: all 0.3s ease-out;
-       -o-transition: all 0.3s ease-out;
-          transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -ms-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .introjs-tooltipReferenceLayer {
@@ -624,6 +624,10 @@ tr.introjs-showElement > th {
 .introjs-skipbutton {
   margin-right: 5px;
   color: #7a7a7a;
+}
+.introjs-skipbutton.bye {
+
+  display: none !important;
 }
 
 .introjs-prevbutton {

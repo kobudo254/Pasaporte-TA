@@ -12,7 +12,12 @@ var localhost = $("html").attr('data-base-url');
 	//IntroJS tutorial si existe el div
 	if($("#start_tutorial").length>0){
 		$( window ).load(function() {
-			introJs().start();
+			//introJs().start();
+
+			introJs().oncomplete(function() {
+  				$("#start_tutorial").remove();
+			}).start();
+
 		});
 	}
 
@@ -262,13 +267,16 @@ function update_logro(totales,user_id){
 	};
 
 	$("img#img_avatar").on( "click", function() {
-		$("input.avatar").click();
+		if($("#start_tutorial").length == 0){
+			$("input.avatar").click();
+		}		
 	});
 
 	 $("input.avatar").change(function(){
 	  	do_upload(this);
 	   	//readURL(this);
 	});
+
 
 
 });
