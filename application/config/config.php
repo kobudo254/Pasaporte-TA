@@ -3,6 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+| ENVIRONMENT
+|--------------------------------------------------------------------------
+|
+| Define enviroment: "production" or "development";
+|
+*/
+$config['env'] = 'development';
+
+
+/*
+|--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
 |
@@ -17,8 +28,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/passport/';
-//$config['base_url'] = 'http://pasaporte.tierra-astur.es/';
+if($config['env'] == "development"):
+	$config['base_url'] = 'http://localhost/passport/';
+else:
+	$config['base_url'] = 'http://pasaporte.tierra-astur.es/';
+endif;
 
 
 /*

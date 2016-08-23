@@ -70,8 +70,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'default';
+
+if(ENVIRONMENT == "development"):
+	$active_group = 'default';
+else:
+	$active_group = 'production';
+endif;
+
 $query_builder = TRUE;
+
 
 $db['default'] = array(
 	'dsn'	=> '',
