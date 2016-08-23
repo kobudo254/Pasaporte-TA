@@ -2,12 +2,12 @@
 	
 	<div class="large-12 small-12 columns" id="progress"></div>
 
-
-
 	<div class="large-3 small-4 columns" id="profile_me">
-		<label class="avatar" id="avatar_cient" title="Cambiar avatar" style="background-image:url('<?=base_url()?>assets/images/avatars/<?=$user_avatar;?>')" width="150px"> 
-        	<input type=file accept="image/*" name="avatar" class="avatar">
-     	 </label>
+		<form enctype="multipart/form-data" accept-charset="utf-8" name="formname" id="formname"  method="post" action="">
+			<img src='<?=base_url()?><?=$user_avatar;?>' id="img_avatar" class="avatar" /> 
+        	<input type="file" accept="image/*" name="userfile" id="userfile" class="avatar"> 
+        	<input type="hidden" value="<?=$user_data[0]->id;?>" id="user_id" name="user_id">     	 
+     	 </form>
 	</div>	
 
 	<div class="large-3 small-8 columns">
